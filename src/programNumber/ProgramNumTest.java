@@ -43,7 +43,6 @@ public class ProgramNumTest {
             integers.add(parseInt(inputNumber));
             return integers;
         }
-
     }
     private static int notNumber(String enterNum) {
         int n = 0;
