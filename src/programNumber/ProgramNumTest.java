@@ -17,44 +17,51 @@ public class ProgramNumTest {
         out.println(randomNumber);
         boolean isPlay = true;
         while(isPlay) {
-            String inputNumber = in.getUserInput("Enter number");
-
-            /*int n = 0;*/
-            try {
-                int n = parseInt(inputNumber);
+            String input = in.getUserInput("Enter number");
+            if (isNumber(input)) {
+                int n = Integer.parseInt(input);
+                int len = 10;
+                int[] arr = new int[len];
+                for (int i = 0; i < arr.length; i++) {
+                    arr[i]= n;
+                }
                 if(n == randomNumber){
                     isPlay = false;
                     out.printf("Congratulations, %s!", inputName);
+                    System.out.println(Arrays.toString(arr));
                 } else if (n > randomNumber) {
                     out.println("Your number is too big. Please, try again.");
                 } else {
                     out.println("Your number is too small. Please, try again.");
                 }
-            } catch (NumberFormatException e) {
-                out.println("Try again!");
             }
-            //int n = notNumber(inputNumber);
-            out.println(createArrayList(inputNumber));
         }
     }
-    private static List<Integer> createArrayList(String inputNumber) {
+    private static boolean isNumber(String in) {
+      try {
+          Integer.parseInt(in);
+      } catch (NumberFormatException e) {
+          return false;
+      }
+      return true;
+    }
+
+    /*private static int[] saveNumber(int[] savedNum, int numberToSave) {
+    int pos = 0;
+        int len = 10;
+        int[] numbers = new int[len];
+        if(pos<len){
+        numbers[pos++]=numberToSave;
+        }
+        return numbers;
+    }*/
+    /*private static List<Integer> createArrayList(String inputNumber) {
         List<Integer> integers = new ArrayList<>();
         while(true) {
+        if("EXIT".equals(inputNumber) break;
             integers.add(parseInt(inputNumber));
             return integers;
         }
-    }
-    private static int notNumber(String enterNum) {
-        int n = 0;
-        try {
-             n = parseInt(enterNum);
-             return n;
-        } catch (NumberFormatException e) {
-            out.println("Try again!");
-
-        } catch (NullPointerException e) {
-        }
-        return n;
-    }
+    }*/
 
 }
