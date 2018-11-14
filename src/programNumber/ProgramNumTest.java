@@ -10,25 +10,24 @@ public class ProgramNumTest {
         int randomNumber = (int)(Math.random()*100);
         System.out.println(randomNumber);
         boolean isPlay = true;
-        while(isPlay == true) {
+        while(isPlay) {
             String inputNumber = in.getUserInput("Enter number");
-            int n = 0;
+            /*int n = 0;*/
             try {
-                n = Integer.parseInt(inputNumber);
+                int n = Integer.parseInt(inputNumber);
+                if(n == randomNumber){
+                    isPlay = false;
+                    System.out.printf("Congratulations, %s!", inputName);
+                } else if (n > randomNumber) {
+                    System.out.println("Your number is too big. Please, try again.");
+                } else {
+                    System.out.println("Your number is too small. Please, try again.");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Try again!");
             }
             //int n = notNumber(inputNumber);
-            if(n == randomNumber){
-                isPlay = false;
-                System.out.printf("Congratulations, %s!", inputName);
-            }
-            if (n > randomNumber) {
-                System.out.println("Your number is too big. Please, try again.");
-            }
-            if (n < randomNumber){
-                System.out.println("Your number is too small. Please, try again.");
-            }
+
         }
     }
 
