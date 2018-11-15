@@ -28,7 +28,9 @@ public class ProgramNumTest {
                 if(n == randomNumber){
                     isPlay = false;
                     out.printf("Congratulations, %s!", inputName);
-                    System.out.println(Arrays.toString(arr));
+                    for (int i = 0; i < arr.length; i++) {
+                        System.out.print(arr[i] + " ");
+                    }
                 } else if (n > randomNumber) {
                     out.println("Your number is too big. Please, try again.");
                 } else {
