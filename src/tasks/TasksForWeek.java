@@ -1,16 +1,10 @@
 package tasks;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.Scanner;
 
 public class TasksForWeek{
     public static void main(String[] args) {
         String[][] scedule = new String[7][2];
-        /*String[] weekDay = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        String[] planing = {"do home work", "go to courses; watch a film",
-        "plaing", "sweeming","do what you want", "meet with parents", "bla bla bla"};
-        int ranW = (int)(Math.random()*weekDay.length);
-        int ranP = (int)(Math.random()*planing.length);*/
         scedule[0][0] = "sunday";
         scedule[0][1] = "do home work";
         scedule[1][0] = "monday";
@@ -25,19 +19,11 @@ public class TasksForWeek{
         scedule[5][1] = "meet with parents";
         scedule[6][0] = "saturday";
         scedule[6][1] = "bla bla bla";
-       /* for (int i = 0; i < scedule.length; i++) {
-            for (int j = 0; j <scedule[i].length ; j++) {
-                System.out.print(scedule[i][j]+"\t");
-            }
-            System.out.println();
-        }*/
+
         System.out.println("Please, input the day of the week:");
         Scanner in = new Scanner(System.in);
         String s = in.next().toUpperCase();
-
             getDoTask(scedule, s);
-
-
     }
 
     private static void getDoTask(String[][] scedule, String s) {

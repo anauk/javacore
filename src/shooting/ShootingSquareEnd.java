@@ -19,6 +19,7 @@ public class ShootingSquareEnd {
             if(isNumber(s1)&&isNumber(s2)) {
                 int n1 = Integer.parseInt(s1);
                 int n2 = Integer.parseInt(s2);
+                if(n1 == arr1.length && n2 == arr1[0].length) {
                     if (n1 == row && n2 == coll) {
                         arr1[n1][n2] = "x";
                         System.out.printf("You won with %d hit!", countTry);
@@ -27,8 +28,12 @@ public class ShootingSquareEnd {
                     } else {
                         arr1[n1][n2] = "*";
                     }
-                printSquare(arr1);
-                countTry++;
+
+                    printSquare(arr1);
+                    countTry++;
+                } else {
+                    System.out.println("ENTER NUMBER <5");
+                }
             }
         }
     }
@@ -44,9 +49,11 @@ public class ShootingSquareEnd {
     }
 
     private static void printSquare(String[][] arr1) {
+        int row = 0;
             for (int i = 0; i < arr1.length; i++) {
+                System.out.print(row++ +"| ");
                 for (int j = 0; j < arr1[i].length; j++) {
-                    System.out.print(arr1[i][j] + "  ");
+                    System.out.print(arr1[i][j] + " | ");
                 }
                 System.out.println();
             }
