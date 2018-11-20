@@ -1,6 +1,5 @@
 package tasks;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TasksForWeek{
@@ -29,24 +28,32 @@ public class TasksForWeek{
                 getDoTask(scedule, s);
                 System.out.println("Please, input the day of the week again:");
             } else {
-                scedule = new String[scedule.length][scedule[0].length];
-                for (int i = 0; i < scedule.length; i++) {
-                    for (int j = 0; j < scedule[i].length; j++) {
-                        if(s.length() == 0 ) {break;}
-                        System.out.print("Input your day " + i + " and task on this day: " + j+ ":");
-                        scedule[i][j] = in.nextLine();
-                        }
-                }
-                for (String[] aScedule : scedule) {
-                    for (String anAScedule : aScedule) {
-                        System.out.print(anAScedule + " ");
-                    }
-                    System.out.println();
-                }
+                scedule = getStrings(scedule, in);
+                printList(scedule);
                 break;
             }
         }
         System.out.println("Bay!");
+    }
+
+    private static void printList(String[][] scedule) {
+        for (String[] aScedule : scedule) {
+            for (String anAScedule : aScedule) {
+                System.out.print(anAScedule + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static String[][] getStrings(String[][] scedule, Scanner in) {
+        scedule = new String[scedule.length][scedule[0].length];
+        for (int i = 0; i < scedule.length; i++) {
+            for (int j = 0; j < scedule[i].length; j++) {
+                System.out.print("Input your day " + i + " and task on this day: " + j+ ":");
+                scedule[i][j] = in.nextLine();
+                }
+        }
+        return scedule;
     }
 
     private static void getDoTask(String[][] scedule, String s) {
