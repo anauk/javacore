@@ -90,7 +90,7 @@ public class Human {
         return String.format("%s{name= %s , surname= %s , year= %d , iq= %d , mother=%s , father= %s , pet= %s}", getClass().getSimpleName(), getName(), getSurname(), getYear(), getIQ(), getMother(), getFather(), getPet());
     }
 
-    private void describePet() {
+    public void describePet() {
     if(this.pet.trickLevel > 50){
         System.out.println("У меня есть "+ this.pet.getNickname() +
                 ", ему " + this.pet.getAge()+" года, он очень хитрый.");
@@ -101,11 +101,11 @@ public class Human {
     }
     }
 
-    private void gridPet(Pet animal) {
+    public void gridPet(Pet animal) {
         System.out.println("Привет, " + animal.getNickname()+"!");
     }
 
-private boolean feedPet(boolean frasa){
+public boolean feedPet(boolean frasa){
                if(true){
                    System.out.println("Думаю " + this.pet.nickname + " не голоден");
                    return false;
