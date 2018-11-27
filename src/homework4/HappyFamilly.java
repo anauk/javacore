@@ -1,4 +1,4 @@
-package family;
+package homework4;
 /*Мини-проект "Счастливая семья"
         Суть проекта: описание структуры семьи с учетом того, что у каждого человека есть кровные родственники, а состав семьи может со временем меняться.
         До прохождения темы "Коллекции" все домашние задания должны быть выполнены с использованием массивов (НЕ используйте интерфейсы List, Set, Map, пока об этом не будет прямо сказано в задании).
@@ -57,7 +57,6 @@ package family;
         Object and Classes*/
 public class HappyFamilly {
     public static void main(String[] args) {
-        Pet[] pets = new Pet[2];
         Pet dog = new Pet("Dog", "Bart", 2, 10, new String[]{"play"});
         Pet cat = new Pet("Cat", "Vaca", 1, 70, new String[]{"sleep, play"});
         dog.eat();
@@ -66,17 +65,15 @@ public class HappyFamilly {
         System.out.println(dog.toString());
         System.out.println(cat.toString());
         Human mother = new Human("Jane", "Karleone");
-        mother.gridPet(dog);
-        mother.describePet(cat);
         System.out.println(mother);
+        mother.gridPet(dog);
         Human father = new Human("Vito", "Karleone");
-        Human ponald = new Human("Ponald", "monday,do this");
-        ponald.setScedule(0,1,"monday");
-        System.out.println(ponald.getScedule(1,0)+ " "+ponald.getScedule(1,1));
-
-        father.describePet(dog);
         System.out.println(father);
-        Human child = new Human("Michael", "Karleone", 1977, 90, "Jane", "Vito", "Bart");
+        father.gridPet(cat);
+        Human child = new Human("Michael", "Karleone", 1977, 90, mother, father, dog);
         System.out.println(child.toString());
+        child.describePet();
+        child.gridPet(cat);
+        child.feedPet(false);
     }
 }
