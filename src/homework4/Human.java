@@ -128,17 +128,20 @@ public class Human {
         System.out.println("Привет, " + animal.getNickname()+"!");
     }
 
-public boolean feedPet(boolean frasa){
-               if(true){
+public boolean feedPet(boolean fraza){
+               if(fraza == true) {
+                   System.out.println("Покормил!");
+               } else {
                    System.out.println("Думаю " + this.pet.nickname + " не голоден");
-                   return false;
-        } else {
-                   if(this.pet.trickLevel > new Random().nextInt(100)) {
-                       System.out.println("Хм.. покормлю ка я " + this.pet);
-                       return true;
+                   this.pet.trickLevel += 50;
+                   System.out.println(this.pet.trickLevel);
+                   int num = new Random().nextInt(100);
+                   System.out.println(num);
+                   if (this.pet.trickLevel > num) {
+                       System.out.println("Хм.. покормлю ка я " + this.pet.nickname);
                    }
                }
-    return false;
+    return true;
 }
 
     public void setMother(String surname) {
