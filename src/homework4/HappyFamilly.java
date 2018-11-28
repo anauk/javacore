@@ -1,4 +1,7 @@
 package homework4;
+
+import java.sql.SQLOutput;
+
 /*Мини-проект "Счастливая семья"
         Суть проекта: описание структуры семьи с учетом того, что у каждого человека есть кровные родственники, а состав семьи может со временем меняться.
         До прохождения темы "Коллекции" все домашние задания должны быть выполнены с использованием массивов (НЕ используйте интерфейсы List, Set, Map, пока об этом не будет прямо сказано в задании).
@@ -57,6 +60,7 @@ package homework4;
         Object and Classes*/
 public class HappyFamilly {
     public static void main(String[] args) {
+        //К 4 задаче
         Pet dog = new Pet("Dog", "Bart", 2, 10, new String[]{"play"});
         Pet cat = new Pet("Cat", "Vaca", 1, 70, new String[]{"sleep, play"});
         dog.eat();
@@ -71,9 +75,25 @@ public class HappyFamilly {
         System.out.println(father);
         father.gridPet(cat);
         Human child = new Human("Michael", "Karleone", 1977, 90, mother, father, dog);
+
         System.out.println(child.toString());
         child.describePet();
         child.gridPet(cat);
         child.feedPet(false);
+//К 5 задаче
+        System.out.println("Это первая семья Марковних");
+        Human mother1 = new Human("Basilica", "Markovna", 1955);
+        Human father1 = new Human("Poman", "Markovich");
+        Human child1 = new Human("Eric", "Markovich", 1988, mother1, father1);
+        System.out.println(mother1);
+        System.out.println(father1);
+        System.out.println(child1);
+        System.out.println("Это вторая семья Милюшевичей");
+        Pet cat2 = new Pet("Cat", "Chernush", 2, 60, new String[]{"sleep, play"});
+        Human mother2 = new Human("Vita", "Milushevich", 1955, 90, cat2);
+        Human father2 = new Human("Dima", "Milushevich",cat2);
+        mother2.setMother("Rodonovna");
+        System.out.println(mother2);
+        System.out.println(father2);
     }
 }
