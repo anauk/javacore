@@ -79,7 +79,7 @@ public class HappyFamilly {
         System.out.println(child.toString());
         child.describePet();
         child.gridPet(cat);
-        child.feedPet(false);
+        child.feedPet(true);
 //К 5 задаче
         System.out.println("Это первая семья Марковних");
         Human mother1 = new Human("Basilica", "Markovna", 1955);

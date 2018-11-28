@@ -131,6 +131,7 @@ public class Human {
 public boolean feedPet(boolean fraza){
                if(fraza == true) {
                    System.out.println("Покормил!");
+                   return true;
                } else {
                    System.out.println("Думаю " + this.pet.nickname + " не голоден");
                    this.pet.trickLevel += 50;
@@ -139,9 +140,12 @@ public boolean feedPet(boolean fraza){
                    System.out.println(num);
                    if (this.pet.trickLevel > num) {
                        System.out.println("Хм.. покормлю ка я " + this.pet.nickname);
+                       System.out.println("Покормил!");
+                       return true;
                    }
                }
-    return true;
+    System.out.println("Не дал!");
+    return false;
 }
 
     public void setMother(String surname) {
