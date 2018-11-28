@@ -1,18 +1,34 @@
 package homework4;
+/*В классе Human создайте конструкторы:
 
+        конструктор, описывающий имя, фамилию и год рождения
+        конструктор, описывающий имя, фамилию, год рождения, папу и маму
+        конструктор, описывающий все поля
+        пустой конструктор*/
 import java.util.Random;
 
 public class Human {
-    private String name;
-    private String surname;
+    public String name;
+    public String surname;
     private int year;
     private int IQ;
     Pet pet;
     Human mother;
     Human father;
     private String[][] scedule;
-
-    public Human(String name,String[][] scedule){
+    public Human(String name, String surname, int year){
+        this.name=name;
+        this.surname=surname;
+        this.year=year;
+    }
+    public Human(String name, String surname, int year, Human mother, Human father){
+        this.name=name;
+        this.surname=surname;
+        this.year=year;
+        this.mother=mother;
+        this.father=father;
+    }
+    public Human(String name, String[][] scedule){
         this.name = name;
         this.scedule = scedule;
     }
@@ -47,6 +63,11 @@ public class Human {
     public Human(String name, String surname) {
         this.name = name;
         this.surname = surname;
+    }
+
+    public Human(String name, String surname, Pet pet) {
+        this(name, surname);
+        this.pet = pet;
     }
 
     private String getName() {
@@ -87,7 +108,9 @@ public class Human {
 
     @Override
     public String toString() {
-        return String.format("%s{name= %s , surname= %s , year= %d , iq= %d , mother=%s , father= %s , pet= %s}", getClass().getSimpleName(), getName(), getSurname(), getYear(), getIQ(), getMother(), getFather(), getPet());
+        String motherName = mother!=null?mother.name+" "+mother.surname:null;
+        String fatherName = father!=null?father.name+" "+father.surname:null;
+        return String.format("%s{name= %s , surname= %s , year= %d , iq= %d , mother=%s , father= %s , pet= %s}", getClass().getSimpleName(), getName(), getSurname(), getYear(), getIQ(), motherName, fatherName, pet);
     }
 
     public void describePet() {
@@ -117,4 +140,9 @@ public boolean feedPet(boolean frasa){
                }
     return false;
 }
+
+    public void setMother(String surname) {
+        this.surname=surname;
+    }
+
 }

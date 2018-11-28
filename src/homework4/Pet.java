@@ -1,5 +1,9 @@
 package homework4;
+/*В классе Pet создайте конструкторы:
 
+        конструктор, описывающий вид животного и его кличку
+        конструктор, описывающий все поля животного
+        пустой конструктор*/
 import java.util.Arrays;
 
 public class Pet {
@@ -8,7 +12,13 @@ public class Pet {
     int age;
     int trickLevel;
     String[] habits ;
+    public Pet(){
 
+}
+public Pet( String species, String nickname){
+    this.species= species;
+    this.nickname = nickname;
+}
     public Pet(String species, String nickname, int a, int tL, String[] habits) {
         this.species = species;
         this.nickname = nickname;
