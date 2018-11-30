@@ -10,6 +10,13 @@ public class Human {
     private Pet pet;
     Family family;
     private String[][] scedule;
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family){
+        this.family = family;
+    }
     public Human(String name, String surname, int year){
         this.name=name;
         this.surname=surname;

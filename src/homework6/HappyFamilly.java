@@ -8,6 +8,7 @@ public class HappyFamilly {
         Human father1 = new Human("Artem", "Petrov");
         Human child = new Human("Kola", "Petrov");
         Family family1 = new Family(mother1, father1);
-family1.addChild(child);
+        family1.addChild(child);
+        System.out.println(family1);
     }
 }
