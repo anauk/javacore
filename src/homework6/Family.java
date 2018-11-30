@@ -55,7 +55,6 @@ public class Family {
         int len = children.length;
         Human[] result = Arrays.copyOf(children, len+1);
         result[len-1] = child;
-        len++;
         child.setFamely(this);
     }
 
