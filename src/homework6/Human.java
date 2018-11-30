@@ -1,5 +1,6 @@
 package homework6;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Human {
@@ -8,12 +9,22 @@ public class Human {
     private int year;
     private int IQ;
     private Pet pet;
-    Family family;
+    private Family family;//человек создает семью
     private String[][] scedule;
+
+
+    public Human(String name, String surname, int year, int iq, String[][] scedule) {
+        this.name = name;
+        this.surname = surname;
+        this.year = year;
+        this.IQ = iq;
+        this.scedule = scedule;
+    }
+//можно узнать какая семья принадлежит человеку
     public Family getFamily() {
         return family;
     }
-
+    //можно установить семью для человека
     public void setFamily(Family family){
         this.family = family;
     }
@@ -32,7 +43,6 @@ public class Human {
         this.name = name;
         this.scedule = scedule;
     }
-
     public Human(String n, String sN, int year, int iq, Pet pet) {
         this.name = n;
         this.surname = sN;
@@ -40,7 +50,6 @@ public class Human {
         this.IQ = iq;
         this.pet = pet;
     }
-
     public Human(String n, String sN, int year, int iq, Family family, Pet pet) {
     this.name = n;
     this.surname = sN;
@@ -49,12 +58,10 @@ public class Human {
     this.family = family;
     this.pet = pet;
     }
-
     public Human(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }
-
     public Human(String name, String surname, Pet pet) {
         this(name, surname);
         this.pet = pet;
@@ -85,8 +92,9 @@ public class Human {
 
     @Override
     public String toString() {
-
-        return String.format("%s{name= %s , surname= %s , year= %d , iq= %d , mother=%s , father= %s , pet= %s}", getClass().getSimpleName(), getName(), getSurname(), getYear(), getIQ(), getScedule());
+        return getClass().getSimpleName()+"{name= "+ getName()+", "+
+        "surname= " + getSurname()+", "+ "year= " + getYear()+", "+
+        "iq= " + getIQ()+", " + "scedule= " + Arrays.deepToString(getScedule())+'}';
     }
 
     public void describePet() {
@@ -124,6 +132,4 @@ public boolean feedPet(boolean fraza){
     System.out.println("Не дал!");
     return false;
 }
-
-
 }

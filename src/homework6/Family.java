@@ -3,59 +3,53 @@ package homework6;
 import java.util.Arrays;
 
 public class Family {
-    Human mother;
-    Human father;
-    Human[] children;
-    Pet pet;
+    private Human mother;//мама член семьи
+    private Human father;//папа член семьи
+    private Human[] children;//дети
+    private Pet pet;
     public Family(Human mother, Human father) {
         this.mother = mother;
+        mother.setFamily(this);
         this.father = father;
+        father.setFamily(this);
         this.children = new Human[0];
+
     }
-    public Human getMother() {
+    //какой человек созает семью
+    public Human getMother(){
         return mother;
     }
-
-    public void setMother(Human mother) {
-        this.mother = mother;
-    }
-
+    //какой человек созает семью
     public Human getFather() {
         return father;
     }
 
-    public void setFather(Human father) {
-        this.father = father;
-    }
-
-    public Human[] getChildren() {
-        return children;
-    }
-
-    public void setChildren(Human[] children) {
-        this.children = children;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     @Override
     public String toString() {
-        return "mother = " + getMother() +
-                "father = " + getFather() +
-                "children = " + getChildren();
+        return "mother = " + this.mother +", " +
+                "father = " + this.father+", " +
+                "children = " + Arrays.toString(this.children);
     }
 
     public void addChild(Human child) {
         int len = children.length;
         Human[] result = Arrays.copyOf(children, len+1);
-        result[len-1] = child;
-        child.setFamily(this);
+        result[len] = child;
+        System.out.println(Arrays.toString(result));
+        child.setFamily(new Family(mother,father));
+    }
+    public boolean deletChild(int index){
+        int i;
+        int len=children.length;
+        for(i=0; i<len; i++){
+            if(i == index);
+            break;
+        }
+        for(int k=i; k<len-1; k++) {
+            children[k]= children[k+1];
+            len--;
+        }
+        return true;
     }
 
 
