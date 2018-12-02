@@ -17,7 +17,7 @@ public class Pet {
     }
     {
         fieldPet = "Object from class Pet";
-        System.out.println(false);
+        System.out.println(fieldPet);
     }
 
     public Pet(String species, String nickname, int a, int tL, String[] habits) {

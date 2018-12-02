@@ -1,11 +1,12 @@
 package homework7;
 
-import homework6.Pet;
-
 import java.util.Arrays;
 import java.util.Objects;
 
+import static java.util.Arrays.copyOf;
+
 public class Family {
+    static int count = 2;
     protected static String staticField;
     protected String field;
     private Human mother;//мама член семьи
@@ -48,22 +49,26 @@ public class Family {
         int len = children.length;
         Human[] result = Arrays.copyOf(children, len+1);
         result[len] = child;
-        System.out.println(Arrays.toString(result));
-        child.setFamily(new Family(mother,father));
+        children = result;
+        child.setFamily(this);
+        count++;
+        System.out.println("Семья состоит из "+ count+ " человек.");
     }
     public boolean deletChild(int index){
-        int i;
-        int len=children.length;
-        for(i=0; i<len; i++){
-            if(i == index);
-            break;
+        if(children != null && children.length > 0){
+            if(index >= 0 && index<children.length){
+                Human[] result = copyOf(children, children.length-1);
+                children = result;
+                return true;
+            } else {
+                return false;
+            }
         }
-        for(int k=i; k<len-1; k++) {
-            children[k]= children[k+1];
-            len--;
-        }
-        return true;
+
+        System.out.println("В этой семьи нет детей!");
+        return false;
     }
+
 
     @Override
     public boolean equals(Object o) {

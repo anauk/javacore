@@ -1,7 +1,5 @@
 package homework7;
 
-import homework6.Pet;
-
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
@@ -16,8 +14,8 @@ public class Human {
     private Pet pet;
     private Family family;//человек создает семью
     private String[][] scedule;
-static{
-    staticPole= "Human";
+    static {
+    staticPole = "Human";
     System.out.println("It is class: "+staticPole);
 }
     {
