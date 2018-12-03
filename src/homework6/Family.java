@@ -53,17 +53,18 @@ public class Family {
                 return false;
             }
         }
-        /*int i;
-        int len=children.length;
-        for(i=0; i<len; i++){
-            if(i == index);
-            break;
-        }
-        for(int k=i; k<len-1; k++) {
-            children[k]= children[k+1];
-            len--;
-        }*/
         System.out.println("В этой семьи нет детей!");
+        return false;
+    }
+
+    public boolean deletMethodChild(Human child){
+        for (int i = 0; i < children.length ; i++) {
+            if(children[i].equals(child)){
+                deletChild(i);
+                child.setFamily(null);
+                return true;
+            }
+        }
         return false;
     }
 }

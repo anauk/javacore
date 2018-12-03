@@ -130,4 +130,12 @@ public boolean feedPet(boolean fraza){
     System.out.println("Не дал!");
     return false;
 }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human person = (Human) o;
+        return person.name.equals(this.name) &&
+                person.year == this.year;
+    }
 }
