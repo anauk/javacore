@@ -64,11 +64,19 @@ public class Family {
                 return false;
             }
         }
-
         System.out.println("В этой семьи нет детей!");
         return false;
     }
-
+    public boolean deletMethodChild(Human child){
+        for (int i = 0; i < children.length ; i++) {
+            if(children[i].equals(child)){
+                deletChild(i);
+                child.setFamily(null);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public boolean equals(Object o) {
