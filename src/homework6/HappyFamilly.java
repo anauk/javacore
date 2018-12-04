@@ -7,10 +7,8 @@ public class HappyFamilly {
         System.out.println("Это кот!");
         Pet cat = new Pet("Cat", "Vaca", 1, 70, new String[]{"sleep, play"});
         System.out.println(cat.toString());
-
         Human mother1 = new Human("Vera", "Petrova", 1966, 79, new String[][]{{"day, task"},{"day_2, task_2"}});
         System.out.println("Это мама Вера! - "+ mother1);
-
         Human father1 = new Human("Artem", "Petrov",1966, 79, new String[][]{{"day, task"},{"day_2, task_2"}});
         System.out.println("Это папа Артем! - "+father1);
         Family family1 = new Family(mother1, father1);

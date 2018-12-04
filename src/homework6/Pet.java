@@ -7,24 +7,14 @@ public class Pet {
     private String nickname;
     private int age;
     private int trickLevel;
-    private String[] habits ;
+    private String[] habits;
 
-    public Pet(String species, String nickname, int a, int tL, String[] habits) {
+    public Pet(String species, String nickname, int age, int trickLevel, String[] habits) {
         this.species = species;
         this.nickname = nickname;
-        this.age = a;
-        this.trickLevel = tL;
+        this.age = age;
+        this.trickLevel = trickLevel;
         this.habits = habits;
-    }
-
-    void eat(){
-        System.out.println("Я кушаю!");
-    }
-    void respond(){
-        System.out.println("Привет, хозяин. Я - "+ nickname + ". Я соскучился!");
-    }
-    void foul(){
-        System.out.println("Нужно хорошо замести следы...");
     }
 
     public String getNickname() {
@@ -47,10 +37,23 @@ public class Pet {
         return habits;
     }
 
+    void eat() {
+        System.out.println("Я кушаю!");
+    }
+
+    void respond() {
+        System.out.println("Привет, хозяин. Я - " + nickname + ". Я соскучился!");
+    }
+
+    void foul() {
+        System.out.println("Нужно хорошо замести следы...");
+    }
+
+
     @Override
     public String toString() {
-        return getSpecies()+"{nickname= "+
-                getNickname()+" , age= " + getAge()+" , trickLevel= "+
-                getTrickLevel()+" , habits= " + Arrays.toString(getHabits()) +"}";
+        return getSpecies() + "{nickname= " +
+                getNickname() + " , age= " + getAge() + " , trickLevel= " +
+                getTrickLevel() + " , habits= " + Arrays.toString(getHabits()) + "}";
     }
 }

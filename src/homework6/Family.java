@@ -10,6 +10,7 @@ public class Family {
     private Human father;//папа член семьи
     private Human[] children;//дети
     private Pet pet;
+
     public Family(Human mother, Human father) {
         this.mother = mother;
         mother.setFamily(this);
@@ -17,10 +18,12 @@ public class Family {
         father.setFamily(this);
         this.children = new Human[0];
     }
+
     //какой человек созает семью
-    public Human getMother(){
+    public Human getMother() {
         return mother;
     }
+
     //какой человек созает семью
     public Human getFather() {
         return father;
@@ -28,23 +31,24 @@ public class Family {
 
     @Override
     public String toString() {
-        return "mother = " + this.mother +", \n" +
-                "father = " + this.father+", \n" +
+        return "mother = " + this.mother + ", \n" +
+                "father = " + this.father + ", \n" +
                 "children = " + Arrays.toString(this.children);
     }
 
     public void addChild(Human child) {
         int len = children.length;
-        Human[] result = copyOf(children, len+1);
+        Human[] result = copyOf(children, len + 1);
         result[len] = child;
         children = result;
         System.out.println(Arrays.toString(result));
         child.setFamily(this);
         count++;
-        System.out.println("Семья состоит из "+ count+ " человек.");
+        System.out.println("Семья состоит из " + count + " человек.");
     }
+
     public boolean deletChild(int i) {
-        if (i >= children.length || i<0) {
+        if (i >= children.length || i < 0) {
             return false;
         }
         if (children[i] != null) {
@@ -59,9 +63,9 @@ public class Family {
         }
     }
 
-    public boolean deletMethodChild(Human child){
-        for (int i = 0; i < children.length ; i++) {
-            if(children[i].equals(child)){
+    public boolean deletMethodChild(Human child) {
+        for (int i = 0; i < children.length; i++) {
+            if (children[i].equals(child)) {
                 deletChild(i);
                 child.setFamily(null);
                 return true;
