@@ -1,4 +1,4 @@
-package homework4;
+package homework4end5;
 
 public class Mother {
     Human mother;
