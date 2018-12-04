@@ -6,12 +6,14 @@ public enum Species {
     boolean canFly;
     int numberOfLegs;
     boolean hasFur;
+
     private Species(String name, boolean canFly, int numberOfLegs, boolean hasFur){
         this.name = name;
         this.canFly = canFly;
         this.numberOfLegs = numberOfLegs;
         this.hasFur = hasFur;
     }
+
     public String getName() {
         return name;
     }
@@ -19,11 +21,9 @@ public enum Species {
     public boolean isCanFly() {
         return canFly;
     }
-
     public int getNumberOfLegs() {
         return numberOfLegs;
     }
-
     public boolean isHasFur() {
         return hasFur;
     }

@@ -13,36 +13,13 @@ public class Family {
     private Human father;//папа член семьи
     private Human[] children;//дети
     private Pet pet;
-    public void run(){
-        System.out.println("run");
-        System.out.println(Runtime.getRuntime().freeMemory());
-    }
-    protected void finalize()throws Throwable{
 
-        System.out.println("This object from class Family will be delete!");
-        while(true) break;
-    }
-    static{
-        staticField = "Family";
-        System.out.println("It is class: " + staticField);
-    }
-    {
-        field = "from class Family";
-        System.out.println("Object init " + field);
-    }
     public Family(Human mother, Human father) {
         this.mother = mother;
         mother.setFamily(this);
         this.father = father;
         father.setFamily(this);
         this.children = new Human[0];
-
-    }
-    @Override
-    public String toString() {
-        return "mother = " + this.mother +", " +
-                "father = " + this.father+", " +
-                "children = " + Arrays.toString(this.children);
     }
 
     public void addChild(Human child) {
@@ -82,6 +59,12 @@ public class Family {
     }
 
     @Override
+    public String toString() {
+        return "mother = " + this.mother +", " +
+                "father = " + this.father+", " +
+                "children = " + Arrays.toString(this.children);
+    }
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -89,11 +72,18 @@ public class Family {
         return this.mother.equals(family.mother) &&
                 this.father.equals(family.father);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(mother,father);
     }
-
+    protected void finalize(){
+        System.out.println("This object from class Family will be delete!");
+    }
+    static{
+        System.out.println("It is class: Family");
+    }
+    {
+        System.out.println("Object init from class Family");
+    }
 
 }
