@@ -35,7 +35,8 @@ public class HappyFamilly {
         System.out.println(family1);
         System.out.println("Дочь Лера выросла и ушла из семьи?! " + family1.deletMethodChild(girl));
         System.out.println("А куда ушел третий ребенок?! "+ family1.deletChild(2) + " Нет столько детей в этой семьи!");
-        System.out.println("Ушли все дети! "+family1.deletChild(1));
+        System.out.println(family1);
+        System.out.println("Ушли все дети! "+family1.deletChild(0));
         System.out.println(family1);
         System.out.println("---------------------------------------------------------------------------------------");
         System.out.println("Вот другая семья!");
