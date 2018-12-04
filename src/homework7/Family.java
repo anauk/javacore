@@ -55,17 +55,19 @@ public class Family {
         System.out.println("Семья состоит из "+ count+ " человек.");
     }
     public boolean deletChild(int index){
-        if(children != null && children.length > 0){
-            if(index >= 0 && index<children.length){
-                Human[] result = copyOf(children, children.length-1);
-                children = result;
-                return true;
-            } else {
-                return false;
-            }
+        if (index >= children.length || index<0) {
+            return false;
         }
-        System.out.println("В этой семьи нет детей!");
-        return false;
+        if (children[index] != null) {
+            children[index].setFamily(null);
+            Human[] temp = Arrays.copyOf(children, children.length - 1);
+            System.arraycopy(children, 0, temp, 0, index);
+            System.arraycopy(children, index + 1, temp, index, children.length - index - 1);
+            children = temp;
+            return true;
+        } else {
+            return false;
+        }
     }
     public boolean deletMethodChild(Human child){
         for (int i = 0; i < children.length ; i++) {
