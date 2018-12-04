@@ -38,15 +38,6 @@ public class Family {
         this.children = new Human[0];
 
     }
-    //какой человек созает семью
-    public Human getMother(){
-        return mother;
-    }
-    //какой человек созает семью
-    public Human getFather() {
-        return father;
-    }
-
     @Override
     public String toString() {
         return "mother = " + this.mother +", " +

@@ -14,10 +14,6 @@ public class Human {
     private Pet pet;
     private Family family;//человек создает семью
     private String[][] scedule;
-    public void run(){
-        System.out.println("run");
-        System.out.println(Runtime.getRuntime().freeMemory());
-    }
     protected  void finalize()throws Throwable{
         System.out.println("This object from class Human will be delete!"+ this);
     }
@@ -131,8 +127,7 @@ public class Human {
     public void gridPet(Pet animal) {
         System.out.println("Привет, " + animal.getNickname()+"!");
     }
-
-public boolean feedPet(boolean fraza){
+    public boolean feedPet(boolean fraza){
                if(fraza == true) {
                    System.out.println("Покормил!");
                    return true;
@@ -155,7 +150,6 @@ public boolean feedPet(boolean fraza){
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, surname, year);
     }
 
