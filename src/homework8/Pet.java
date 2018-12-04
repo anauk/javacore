@@ -63,7 +63,9 @@ public class Pet {
 
     @Override
     public String toString() {
-        return getSpecies().getName()+" "+getSpecies().isCanFly()+" "+getSpecies().getNumberOfLegs()+" "+getSpecies().isHasFur()+"{nickname= "+
+        String canFly = (getSpecies().isCanFly())?"может летать":"не может летать";
+        String hasFur = (getSpecies().isHasFur())?"есть шерсть":"нет шерсти";
+        return getSpecies().getName()+", "+canFly+", "+getSpecies().getNumberOfLegs()+" лап, "+hasFur+"{nickname= "+
                 getNickname()+" , age= " + getAge()+" , trickLevel= "+
                 getTrickLevel()+" , habits= " + Arrays.toString(getHabits()) +"}";
     }
