@@ -8,7 +8,7 @@ public class Human {
     private String name;
     private String surname;
     private int year;
-    private int IQ;
+    public int IQ;
     private Pet pet;
     private Family family;//человек создает семью
     private String[][] scedule;
@@ -163,4 +163,9 @@ public class Human {
     public int hashCode() {
         return Objects.hash(name, surname, year);
     }
+
+    public void setName(String s) {
+        s=s;
+    }
+
 }
