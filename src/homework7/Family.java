@@ -6,11 +6,9 @@ import java.util.Objects;
 import static java.util.Arrays.copyOf;
 
 public class Family {
-    static int count = 2;
     private Human mother;//мама член семьи
     private Human father;//папа член семьи
     private Human[] children;//дети
-    private Pet pet;
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -37,8 +35,6 @@ public class Family {
         result[len] = child;
         children = result;
         child.setFamily(this);
-        count++;
-        System.out.println("Семья состоит из " + count + " человек.");
     }
 
     public boolean deletChild(int index) {
@@ -95,5 +91,14 @@ public class Family {
 
     {
         System.out.println("Object init from class Family");
+    }
+    public int countFamily(){
+        int count = 2;
+        if(children == null) {
+            return count;
+        } else if(children.length>0){
+            count += children.length;
+        }
+        return count;
     }
 }
