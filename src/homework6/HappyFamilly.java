@@ -20,10 +20,13 @@ public class HappyFamilly {
         Human[] children = {boy, girl};
         System.out.println("Они брат и сестра ");
         family1.addChild(girl);
+        System.out.println(family1.getCount());
         System.out.println("А вот они вместе с семьей "+family1);
         System.out.println("Дочь Лера выросла и ушла из семьи?! " + family1.deletMethodChild(boy));
+        System.out.println(family1.getCount());
         System.out.println("А куда ушел третий ребенок?! "+ family1.deletChild(2) + " Нет столько детей в этой семьи!");
         System.out.println("Ушли все дети! "+family1.deletChild(0));
+        System.out.println(family1.getCount());
         System.out.println(family1);
         System.out.println("---------------------------------------------------------------------------------------");
         System.out.println("Вот другая семья!");
@@ -34,5 +37,6 @@ public class HappyFamilly {
         Family family2 = new Family(mother2, father2);
         System.out.println("Это их семья: "+family2);
         family2.deletChild(0);
+        System.out.println(family2.getCount());
     }
 }

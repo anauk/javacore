@@ -5,11 +5,10 @@ import java.util.Arrays;
 import static java.util.Arrays.*;
 
 public class Family {
-    static int count = 2;
+    private static int count = 2;
     private Human mother;//мама член семьи
     private Human father;//папа член семьи
     private Human[] children;//дети
-    private Pet pet;
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -29,6 +28,10 @@ public class Family {
         return father;
     }
 
+    public String getCount() {
+        return "Семья состоит из "+count + " человек";
+    }
+
     @Override
     public String toString() {
         return "mother = " + this.mother + ", \n" +
@@ -44,7 +47,6 @@ public class Family {
         System.out.println(Arrays.toString(result));
         child.setFamily(this);
         count++;
-        System.out.println("Семья состоит из " + count + " человек.");
     }
 
     public boolean deletChild(int i) {
@@ -57,6 +59,7 @@ public class Family {
             System.arraycopy(children, 0, temp, 0, i);
             System.arraycopy(children, i + 1, temp, i, children.length - i - 1);
             children = temp;
+            count--;
             return true;
         } else {
             return false;
