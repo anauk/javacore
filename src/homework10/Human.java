@@ -124,7 +124,7 @@ public class Human {
         }
     }
 
-    public void gridPet(Pet animal) {
+    void gridPet(Pet animal) {
         System.out.println("Привет, " + animal.getNickname() + "!");
     }
 

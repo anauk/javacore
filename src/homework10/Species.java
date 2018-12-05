@@ -17,12 +17,6 @@ public enum Species {
     public String getName() {
         return name;
     }
-    /*public void setSpecies(String name){
-        this.name=name();
-    }*/
-    public String getSpecies(){
-        return name;
-    }
     public boolean isCanFly() {
         return canFly;
     }

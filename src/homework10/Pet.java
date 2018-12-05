@@ -8,6 +8,7 @@ abstract class Pet {
     private int age;
     private int trickLevel;
     private String[] habits;
+    private Species species = Species.UNKNOWN;
 
     public Pet(String nickname){
         this.nickname=nickname;
@@ -41,12 +42,12 @@ abstract class Pet {
 
     public abstract void respond();
 
-    @Override
+    /*@Override
     public String toString() {
-        return "{nickname= " +
+        return Species.CAT+"{nickname= " +
                 getNickname() + " , age= " + getAge() + " , trickLevel= " +
                 getTrickLevel() + " , habits= " + Arrays.toString(getHabits()) + "}";
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
