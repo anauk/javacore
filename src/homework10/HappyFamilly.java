@@ -39,6 +39,7 @@ public class HappyFamilly {
         System.out.println("Ушли все дети! " + family1.deletChild(0));
         System.out.println(family1);
         System.out.println(family1.countFamily());
+        System.out.println(family1.bornChild());
         System.out.println("---------------------------------------------------------------------------------------");
         System.out.println("Вот другая семья!");
         Human mother2 = new Woman("Nina", "Gylash");
@@ -51,5 +52,6 @@ public class HappyFamilly {
         ((Woman) mother2).makeUp();
         ((Man) father2).repairCar();
         System.out.println(family2.countFamily());
+        System.out.println(family2.bornChild());
     }
 }

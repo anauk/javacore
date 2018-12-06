@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Human {
     private String name;
-    private String surname;
+    public String surname;
     private int year;
     public int IQ;
     private Pet pet;
@@ -82,7 +82,7 @@ public class Human {
         return year;
     }
 
-    private int getIQ() {
+    public int getIQ() {
         return IQ;
     }
 
@@ -164,8 +164,8 @@ public class Human {
         return Objects.hash(name, surname, year);
     }
 
-    public void setName(String s) {
-        s=s;
+    public void setIQ(int IQ) {
+        this.IQ = IQ;
     }
 
 }

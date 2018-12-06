@@ -6,8 +6,6 @@ import java.util.Objects;
 import static java.util.Arrays.copyOf;
 
 public class Family implements HumanCreator{
-    protected static String staticField;
-    protected String field;
     private Human mother;//мама член семьи
     private Human father;//папа член семьи
     private Human[] children;//дети
@@ -104,18 +102,18 @@ public class Family implements HumanCreator{
         int boyNameR = (int)(Math.random()*boyName.length);
         int girlNameR = (int)(Math.random()*girlName.length);
         int gender = (int)(Math.random()*2);
+
         if(gender == 0) {
-            Human child = new Man();
-            child.setName(boyName[boyNameR]);
+            Human child = new Man(boyName[boyNameR], Man.getSurname(father));
+            child.setFamily(this);
+            child.setIQ((mother.IQ+father.IQ)/2);
             return child;
         } else if(gender == 1){
-            Human child = new Woman();
-            child.setName((girlName[girlNameR]));
+            Human child = new Woman(girlName[girlNameR], Man.getSurname(father));
+            child.setFamily(this);
+            child.setIQ((mother.IQ+father.IQ)/2);
             return child;
         }
-        bornChild().setFamily(this);
-        bornChild().setSurname(Human father);
-        bornChild().setIQ
         return new Human();
     }
 

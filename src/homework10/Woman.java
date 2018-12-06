@@ -4,7 +4,9 @@ public class Woman extends Human{
     public Woman(String name, String surname, int year, int IQ, String[][] scedule) {
         super(name, surname, year, IQ, scedule);
     }
-
+    public int getIq(){
+        return IQ;
+    }
     public Woman(String name, String surname) {
         super(name, surname);
     }
