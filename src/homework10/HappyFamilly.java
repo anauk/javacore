@@ -53,5 +53,14 @@ public class HappyFamilly {
         ((Man) father2).repairCar();
         System.out.println(family2.countFamily());
         System.out.println(family2.bornChild());
+        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("Вот третья семья!");
+        Human mother3 = new Woman("Poza", "Kochetkova",1966, 91, new String[][]{{DayOfWeek.WEDNESDAY.name()}, {"day_2, task_2"}});
+        System.out.println("Это мама " + mother2);
+        Human father3 = new Man("Artur", "Pirogkov",1956, 82, new String[][]{{DayOfWeek.SATURDAY.name()}, {"day_3, task_3"}});
+        Family family3 = new Family(mother3, father3);
+        Human child1 = family3.bornChild();
+        Human child2 = family3.bornChild();
+        System.out.println(child1+ " " +child2);
     }
 }
