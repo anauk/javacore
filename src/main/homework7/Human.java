@@ -11,17 +11,12 @@ public class Human {
     private int IQ;
     private Family family;//человек создает семью
     private String[][] scedule;
-    private Pet pet;
 
     public Human(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }
 
-    public Human(String name, String surname, Pet pet) {
-        this(name, surname);
-        this.pet = pet;
-    }
 
     public Human(String name, String surname, int year) {
         this(name, surname);
@@ -44,17 +39,15 @@ public class Human {
         this.scedule = scedule;
     }
 
-    public Human(String name, String surname, int year, int IQ, Pet pet) {
+    public Human(String name, String surname, int year, int IQ) {
         this(name, surname, year);
         this.IQ = IQ;
-        this.pet = pet;
     }
 
-    public Human(String name, String surname, int year, int IQ, Family family, Pet pet) {
+    public Human(String name, String surname, int year, int IQ, Family family) {
         this(name, surname, year);
         this.IQ = IQ;
         this.family = family;
-        this.pet = pet;
     }
 
 
@@ -98,13 +91,13 @@ public class Human {
     }
 
     public void describePet() {
-        if (this.pet.getTrickLevel() > 50) {
-            System.out.println("У меня есть " + this.pet.getNickname() +
-                    ", ему " + this.pet.getAge() + " года, он очень хитрый.");
+        if (getFamily().getPet().getTrickLevel() > 50) {
+            System.out.println("У меня есть " + getFamily().getPet().getNickname() +
+                    ", ему " + getFamily().getPet().getAge() + " года, он очень хитрый.");
         }
-        if (this.pet.getTrickLevel() <= 50) {
-            System.out.println("У меня есть " + this.pet.getNickname() +
-                    ", ему " + this.pet.getAge() + " года, он почти не хитрый.");
+        if (getFamily().getPet().getTrickLevel() <= 50) {
+            System.out.println("У меня есть " + getFamily().getPet().getNickname() +
+                    ", ему " + getFamily().getPet().getAge() + " года, он почти не хитрый.");
         }
     }
 
@@ -117,14 +110,14 @@ public class Human {
             System.out.println("Покормил!");
             return true;
         } else {
-            System.out.println("Думаю " + this.pet.getNickname() + " не голоден");
-            int xz = this.pet.getTrickLevel();
+            System.out.println("Думаю " + getFamily().getPet().getNickname() + " не голоден");
+            int xz = getFamily().getPet().getTrickLevel();
             xz += 50;
             System.out.println(xz);
             int num = new Random().nextInt(100);
             System.out.println(num);
             if (xz > num) {
-                System.out.println("Хм.. покормлю ка я " + this.pet.getNickname());
+                System.out.println("Хм.. покормлю ка я " + getFamily().getPet().getNickname());
                 System.out.println("Покормил!");
                 return true;
             }
