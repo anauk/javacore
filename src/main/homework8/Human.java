@@ -9,9 +9,9 @@ public class Human {
     private String surname;
     private int year;
     private int IQ;
-    private Pet pet;
     private Family family;//человек создает семью
     private String[][] scedule;
+    private Pet pet;
 
     public Human() {
     }

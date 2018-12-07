@@ -52,8 +52,8 @@ public class Pet {
 
     @Override
     public String toString() {
-        String canFly = (getSpecies().isCanFly()) ? "может летать" : "не может летать";
-        String hasFur = (getSpecies().isHasFur()) ? "есть шерсть" : "нет шерсти";
+        String canFly = (getSpecies().CanFly()) ? "может летать" : "не может летать";
+        String hasFur = (getSpecies().HasFur()) ? "есть шерсть" : "нет шерсти";
         return getSpecies().getName() + ", " + canFly + ", " + getSpecies().getNumberOfLegs() + " лап, " + hasFur + "{nickname= " +
                 getNickname() + " , age= " + getAge() + " , trickLevel= " +
                 getTrickLevel() + " , habits= " + Arrays.toString(getHabits()) + "}";
