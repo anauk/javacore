@@ -9,6 +9,7 @@ public class Family {
     private Human mother;//мама член семьи
     private Human father;//папа член семьи
     private Human[] children;//дети
+    private Pet pet;
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -30,6 +31,9 @@ public class Family {
 
     public String getCount() {
         return "Семья состоит из "+count + " человек";
+    }
+    public Pet getPet(){
+        return pet;
     }
 
     @Override
