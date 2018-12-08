@@ -49,7 +49,12 @@ abstract class Pet {
 
     public abstract void respond();
 
-    public abstract String toString();
+    @Override
+    public String toString() {
+        return species+"{nickname= " +
+                getNickname() + " , age= " + getAge() + " , trickLevel= " +
+                getTrickLevel() + " , habits= " + Arrays.toString(getHabits()) + "}";
+    }
 
     @Override
     public boolean equals(Object o) {

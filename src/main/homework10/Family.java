@@ -100,26 +100,19 @@ public class Family implements HumanCreator{
 
     @Override
     public Human bornChild() {
-        String[] boyName = {"Roma", "Peta", "Kola","Vasa","Kiril"};
-        String[] girlName = {"Lida","Veta", "Olga", "Vlada", "Hasta"};
-        int boyNameR = (int)(Math.random()*boyName.length);
-        int girlNameR = (int)(Math.random()*girlName.length);
-
+        Human child;
         if((int)(Math.random()*2) == 0) {
-            Human child = new Man(boyName[boyNameR], Man.getSurname(father));
-            child.setFamily(this);
-            this.addChild(child);
-            child.setIQ((mother.IQ+father.IQ)/2);
-            return child;
-        } else if((int)(Math.random()*2) == 1){
-            Human child = new Woman(girlName[girlNameR], Man.getSurname(father));
-            child.setFamily(this);
-            this.addChild(child);
-            child.setIQ((mother.IQ+father.IQ)/2);
-            return child;
+            String[] boyName = {"Roma", "Peta", "Kola","Vasa","Kiril"};
+            int boyNameR = (int)(Math.random()*boyName.length);
+            child = new Man(boyName[boyNameR], Man.getSurname(father));
+        } else {
+            String[] girlName = {"Lida","Veta", "Olga", "Vlada", "Hasta"};
+            int girlNameR = (int)(Math.random()*girlName.length);
+            child = new Woman(girlName[girlNameR], Man.getSurname(father));
         }
-        return null;
+        child.setFamily(this);
+        this.addChild(child);
+        child.setIQ((mother.IQ+father.IQ)/2);
+        return child;
     }
-
-
 }
