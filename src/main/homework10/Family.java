@@ -9,7 +9,7 @@ public class Family implements HumanCreator{
     private Human mother;//мама член семьи
     private Human father;//папа член семьи
     private Human[] children;//дети
-    private Man surname;
+    private Pet pet;
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -17,6 +17,9 @@ public class Family implements HumanCreator{
         this.father = father;
         father.setFamily(this);
         this.children = new Human[0];
+    }
+    public Pet getPet(){
+        return pet;
     }
 
     public void addChild(Human child) {
@@ -101,20 +104,21 @@ public class Family implements HumanCreator{
         String[] girlName = {"Lida","Veta", "Olga", "Vlada", "Hasta"};
         int boyNameR = (int)(Math.random()*boyName.length);
         int girlNameR = (int)(Math.random()*girlName.length);
-        int gender = (int)(Math.random()*2);
 
-        if(gender == 0) {
+        if((int)(Math.random()*2) == 0) {
             Human child = new Man(boyName[boyNameR], Man.getSurname(father));
             child.setFamily(this);
+            this.addChild(child);
             child.setIQ((mother.IQ+father.IQ)/2);
             return child;
-        } else if(gender == 1){
+        } else if((int)(Math.random()*2) == 1){
             Human child = new Woman(girlName[girlNameR], Man.getSurname(father));
             child.setFamily(this);
+            this.addChild(child);
             child.setIQ((mother.IQ+father.IQ)/2);
             return child;
         }
-        return new Human();
+        return null;
     }
 
 

@@ -3,13 +3,12 @@ package homework10;
 import java.util.Arrays;
 
 public class DomesticCat extends Pet implements Foul {
-    private Species species;
     public DomesticCat(String nickname){
         super(nickname);
     }
     public DomesticCat(String nickname, int age, int trickLevel, String[] habits) {
         super(nickname, age, trickLevel, habits);
-        this.species = Species.CAT;
+        super.setSpecies(Species.CAT);
     }
     public void respond() {
         System.out.println("Привет, хозяин. Я - " + getNickname() + ". Я соскучился!");

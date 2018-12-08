@@ -3,13 +3,13 @@ package homework10;
 import java.util.Arrays;
 
 public class RoboCat extends Pet implements Foul{
-    private Species species;
+
     public RoboCat(String nickname){
         super(nickname);
     }
     public RoboCat( String nickname, int age, int trickLevel, String[] habits) {
         super(nickname, age, trickLevel, habits);
-        this.species = Species.CAT;
+        super.setSpecies(Species.CAT);
     }
     public void respond() {
         System.out.println("Привет, хозяин. Я - " + getNickname() + ". Я соскучился!");

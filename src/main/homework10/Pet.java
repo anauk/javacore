@@ -13,13 +13,20 @@ abstract class Pet {
     public Pet(String nickname){
         this.nickname=nickname;
     }
+    public Pet(String nickname, int age, String[] habits) {
+        this.nickname = nickname;
+        this.age = age;
+        this.habits = habits;
+    }
     public Pet(String nickname, int age, int trickLevel, String[] habits) {
         this.nickname = nickname;
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
-
+    public void setSpecies(Species species){
+        this.species = species;
+    };
     public String getNickname() {
         return nickname;
     }
@@ -42,12 +49,7 @@ abstract class Pet {
 
     public abstract void respond();
 
-    /*@Override
-    public String toString() {
-        return Species.CAT+"{nickname= " +
-                getNickname() + " , age= " + getAge() + " , trickLevel= " +
-                getTrickLevel() + " , habits= " + Arrays.toString(getHabits()) + "}";
-    }*/
+    public abstract String toString();
 
     @Override
     public boolean equals(Object o) {

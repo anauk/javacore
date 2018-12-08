@@ -1,17 +1,14 @@
 package homework10;
 
-import homework8.Species;
-
 import java.util.Arrays;
 
 public class Fish extends Pet{
-    private Species species;
     public Fish(String nickname){
         super(nickname);
     }
-    public Fish(String nickname, int age, int trickLevel, String[] habits) {
-        super(nickname, age, trickLevel, habits);
-        this.species = Species.FISH;
+    public Fish(String nickname, int age,  String[] habits) {
+        super(nickname, age, habits);
+        super.setSpecies(Species.FISH);
     }
 
     public void respond() {

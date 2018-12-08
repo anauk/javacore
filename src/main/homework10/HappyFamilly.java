@@ -5,7 +5,7 @@ public class HappyFamilly {
         Pet cat = new DomesticCat("Vaca", 1, 70, new String[]{"sleep, play"});
         ((DomesticCat) cat).foul();
         System.out.println("Это кот! " + cat);
-        Pet fish = new Fish("Molly", 1, 20, new String[]{"swim, eat"});
+        Pet fish = new Fish("Molly", 1, new String[]{"swim, eat"});
         System.out.println(fish.getClass());
         System.out.println("Это рыбка! " + fish);
         fish.respond();
