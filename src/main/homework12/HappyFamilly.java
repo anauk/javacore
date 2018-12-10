@@ -89,5 +89,7 @@ public class HappyFamilly {
             System.out.println("family: "+family);
         }
         System.out.println("Family under index 0 = "+ familyDao.getFamilyByIndex(0));
+        System.out.println(familyDao.deleteFamily(1));
+        System.out.println(familyDao.deleteFamily(family1));
     }
 }

@@ -34,12 +34,18 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public boolean deleteFamily(int index) {
-        return families.remove(getFamilyByIndex(index));
+        if(families.remove(getFamilyByIndex(index))) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean deleteFamily(Family family) {
-        return families.remove(family);
+        if(!families.isEmpty()&&families.remove(family)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
