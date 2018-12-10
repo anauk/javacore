@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
-abstract class Pet implements Comparable<Pet> {
+abstract class Pet{
     private String nickname;
-    private int age;
-    private int trickLevel;
+    private static int age;
+    private static int trickLevel;
     private Set<String> habits;
     private Species species = Species.UNKNOWN;
 
@@ -32,17 +32,15 @@ abstract class Pet implements Comparable<Pet> {
         this.species = species;
     }
 
-    ;
-
     public String getNickname() {
         return nickname;
     }
 
-    public int getAge() {
+    public static int getAge() {
         return age;
     }
 
-    public int getTrickLevel() {
+    public static int getTrickLevel() {
         return trickLevel;
     }
 
@@ -55,10 +53,6 @@ abstract class Pet implements Comparable<Pet> {
     }
 
     public abstract void respond();
-
-    public int compareTo(Pet pet) {
-        return species.compareTo(pet.species);
-    }
 
     @Override
     public String toString() {

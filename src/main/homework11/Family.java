@@ -9,7 +9,7 @@ public class Family implements HumanCreator{
     private Human mother;
     private Human father;
     private List<Human> children;
-    private Set<Pet> pet;
+    private Set<Pet> pet = new HashSet<>();
 
     public Family(Human mother, Human father) {
         this.mother = mother;

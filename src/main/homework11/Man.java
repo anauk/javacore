@@ -15,15 +15,13 @@ public class Man extends Human {
     public static String getSurname(Human father) {
         return father.surname;
     }
-    public int getIq(){
+
+    public int getIq() {
         return IQ;
     }
-    void repairCar(){
+
+    void repairCar() {
         System.out.println("Закнчиваю все дела...,и иду смотреть машину!");
     }
 
-    @Override
-    void gridPet(Pet animal) {
-        System.out.println("Оо.., " + animal.getNickname() + ", ах ты... маленький засранец!");
-    }
 }

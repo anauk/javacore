@@ -15,12 +15,22 @@ public class Woman extends Human {
         super(name, surname);
     }
 
+    @Override
+    public String gridPet() {
+        String result = "";
+        if (getFamily() == null) {
+            return null;
+        }
+        if (getFamily().getPet() != null){
+            for (Pet pet : getFamily().getPet()) {
+                result += "Привет, " + pet.getNickname() + "!" + "\n";
+            }
+        }
+        return result;
+    }
+
     void makeUp() {
         System.out.println("Как быстро бежит время, а я даже еще не накрасилась!");
     }
 
-    @Override
-    void gridPet(Pet animal) {
-        System.out.println("Привет, " + animal.getNickname() + "! Я рада тебя видеть!");
-    }
 }
