@@ -1,7 +1,10 @@
 package homework11;
 
-import homework12.CollectionFamilyDao;
-import homework12.FamilyDao;
+import homework11.family.*;
+import homework11.pet.Dog;
+import homework11.pet.DomesticCat;
+import homework11.pet.Fish;
+import homework11.pet.Pet;
 
 import java.util.*;
 
@@ -32,8 +35,17 @@ public class HappyFamilly {
         woman.feedPet(true);
         man.describePet();
 
-        Human boy = new Woman("Vera", "Ivanova");
+        Human girl = new Woman("Mila", "Ivanova");
+        Human boy = new Man("Kola", "Ivanov");
         family.addChild(boy);
+
+        ArrayList<Object> children = new ArrayList<>();
+        children.add(boy);
+        children.add(girl);
+        System.out.println(children);
+
+        woman.makeUp();
+        man.repairCar();
 
     }
 }

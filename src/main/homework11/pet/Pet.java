@@ -1,13 +1,12 @@
-package homework11;
+package homework11.pet;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
-abstract class Pet{
+public abstract class Pet{
     private String nickname;
-    private static int age;
-    private static int trickLevel;
+    private int age;
+    private int trickLevel;
     private Set<String> habits;
     private Species species = Species.UNKNOWN;
 
@@ -36,11 +35,11 @@ abstract class Pet{
         return nickname;
     }
 
-    public static int getAge() {
+    public int getAge() {
         return age;
     }
 
-    public static int getTrickLevel() {
+    public int getTrickLevel() {
         return trickLevel;
     }
 
@@ -48,7 +47,7 @@ abstract class Pet{
         return habits;
     }
 
-    void eat() {
+    public void eat() {
         System.out.println("Я кушаю!");
     }
 

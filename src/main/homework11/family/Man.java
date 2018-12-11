@@ -1,8 +1,8 @@
-package homework11;
+package homework11.family;
 
 import java.util.Map;
 
-public class Man extends Human {
+final public class Man extends Human {
 
     public Man(String name, String surname, int year, int IQ, Map<String, String> scedule) {
         super(name, surname, year, IQ, scedule);
@@ -12,15 +12,7 @@ public class Man extends Human {
         super(name, surname);
     }
 
-    public static String getSurname(Human father) {
-        return father.surname;
-    }
-
-    public int getIq() {
-        return IQ;
-    }
-
-    void repairCar() {
+    public void repairCar() {
         System.out.println("Закнчиваю все дела...,и иду смотреть машину!");
     }
 

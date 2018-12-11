@@ -1,10 +1,10 @@
-package homework11;
+package homework11.family;
 
 public enum DayOfWeek {
     MONDAY("ПОНЕДЕЛЬНИК"), TUESDAY("ВТОРНИК"), WEDNESDAY("СРЕДА"),
     THURSDAY("ЧЕТВЕРГ"), FRIDAY("ПЯТНИЦА") ,SATURDAY("СУББОТА"), SANDAY("ВОСКРЕСЕНЬЕ");
     private String day;
-    private DayOfWeek(String day) {
+    DayOfWeek(String day) {
         this.day = day;
     }
     public String getDay() {

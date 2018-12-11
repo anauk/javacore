@@ -1,15 +1,16 @@
-package homework11;
+package homework11.family;
 
-import java.lang.reflect.Array;
+import homework11.pet.Pet;
+
 import java.util.*;
 
 import static java.util.Arrays.copyOf;
 
 public class Family implements HumanCreator{
-    private Human mother;
-    private Human father;
-    private List<Human> children;
-    private Set<Pet> pet = new HashSet<>();
+    protected Human mother;
+    protected Human father;
+    protected List<Human> children;
+    protected Set<Pet> pet = new HashSet<>();
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -96,11 +97,11 @@ public class Family implements HumanCreator{
         if((int)(Math.random()*2) == 0) {
             String[] boyName = {"Roma", "Peta", "Kola","Vasa","Kiril"};
             int boyNameR = (int)(Math.random()*boyName.length);
-            child = new Man(boyName[boyNameR], Man.getSurname(father));
+            child = new Man(boyName[boyNameR], father.getSurname());
         } else {
             String[] girlName = {"Lida","Veta", "Olga", "Vlada", "Hasta"};
             int girlNameR = (int)(Math.random()*girlName.length);
-            child = new Woman(girlName[girlNameR], Man.getSurname(father));
+            child = new Woman(girlName[girlNameR], father.getSurname());
         }
         child.setFamily(this);
         this.addChild(child);

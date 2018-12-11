@@ -1,8 +1,10 @@
-package homework11;
+package homework11.family;
+
+import homework11.pet.Pet;
 
 import java.util.Map;
 
-public class Woman extends Human {
+final public class Woman extends Human {
     public Woman(String name, String surname, int year, int IQ, Map<String, String> scedule) {
         super(name, surname, year, IQ, scedule);
     }
@@ -17,19 +19,19 @@ public class Woman extends Human {
 
     @Override
     public String gridPet() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         if (getFamily() == null) {
             return null;
         }
         if (getFamily().getPet() != null){
             for (Pet pet : getFamily().getPet()) {
-                result += "Привет, " + pet.getNickname() + "!" + "\n";
+                result.append("Привет, ").append(pet.getNickname()).append("!").append("\n");
             }
         }
-        return result;
+        return result.toString();
     }
 
-    void makeUp() {
+    public void makeUp() {
         System.out.println("Как быстро бежит время, а я даже еще не накрасилась!");
     }
 

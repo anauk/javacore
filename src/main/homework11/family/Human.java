@@ -1,15 +1,16 @@
-package homework11;
+package homework11.family;
 
-import java.util.Arrays;
+import homework11.pet.Pet;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
 public class Human {
     private String name;
-    public String surname;
+    protected String surname;
     private int year;
-    public int IQ;
+    protected int IQ;
     private Family family;
     private Map<String, String> scedule;
 
@@ -59,15 +60,15 @@ public class Human {
         this.family = family;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
-    private int getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -140,21 +141,21 @@ public class Human {
     }
 
     public String gridPet() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         if (getFamily() == null) {
             return null;
         }
         if (getFamily().getPet() != null){
             for (Pet pet : family.getPet()) {
-                result += "Привет, " + pet.getNickname() + "!" + "\n";
+                result.append("Привет, ").append(pet.getNickname()).append("!").append("\n");
             }
         }
-        result += " У нас же нет питомца!";
-        return result;
+        result.append(" У нас же нет питомца!");
+        return result.toString();
     }
 
     public boolean feedPet(boolean fraza) {
-        if (fraza == true) {
+        if (fraza) {
             System.out.println("Покормил!");
             return true;
         } else {
