@@ -38,6 +38,14 @@ public class HappyFamilly {
         Human girl = new Woman("Mila", "Ivanova");
         Human boy = new Man("Kola", "Ivanov");
         family.addChild(boy);
+        family.addChild(girl);
+
+        System.out.println(family);
+
+        family.deletChild(1);
+        System.out.println(family);
+        family.deletChild(boy);
+        System.out.println(family);
 
         ArrayList<Object> children = new ArrayList<>();
         children.add(boy);

@@ -7,10 +7,10 @@ import java.util.*;
 import static java.util.Arrays.copyOf;
 
 public class Family implements HumanCreator{
-    protected Human mother;
-    protected Human father;
-    protected List<Human> children;
-    protected Set<Pet> pet = new HashSet<>();
+    private Human mother;
+    private Human father;
+    private List<Human> children;
+    private Set<Pet> pet = new HashSet<>();
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -23,30 +23,36 @@ public class Family implements HumanCreator{
         return pet;
     }
 
+    public List<Human> getChildren() {
+        return children;
+    }
+
     public void addChild(Human child) {
         children.add(child);
         child.setFamily(this);
     }
 
     public boolean deletChild(int index) {
-        int indexResult = children.indexOf(index);
-        if(indexResult >= 0 && !children.isEmpty()){
-            children.remove(indexResult).setFamily(null);
+        if (children != null && children.size() > 0) {
+            if (index >= 0 && index < children.size()) {
+                children.remove(index).setFamily(null);
                 return true;
             } else {
                 return false;
             }
+        }
+        return false;
     }
 
-    public boolean deletMethodChild(Human child) {
+    public boolean deletChild(Human child) {
         if(!children.isEmpty()) {
-            children.remove(child);
             child.setFamily(null);
-            return true;
+            return children.remove(child);
         } else {
             return false;
         }
     }
+
     public void addPet(Pet animal) {
         pet.add(animal);
     }
@@ -105,7 +111,7 @@ public class Family implements HumanCreator{
         }
         child.setFamily(this);
         this.addChild(child);
-        child.setIQ((mother.IQ+father.IQ)/2);
+        child.setIQ((mother.getIQ()+father.getIQ())/2);
         return child;
     }
 }

@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class Human {
     private String name;
-    protected String surname;
+    private String surname;
     private int year;
-    protected int IQ;
+    private int IQ;
     private Family family;
     private Map<String, String> scedule;
 

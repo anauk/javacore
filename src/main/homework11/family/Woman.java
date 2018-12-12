@@ -10,7 +10,7 @@ final public class Woman extends Human {
     }
 
     public int getIq() {
-        return IQ;
+        return getIQ();
     }
 
     public Woman(String name, String surname) {
