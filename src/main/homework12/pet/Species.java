@@ -1,4 +1,4 @@
-package homework12;
+package homework12.pet;
 
 public enum Species {
     DOG("Пес", false, 4, true), CAT("Кошка", false, 4, true), FISH("Рыбки", false, 0, false), BIRD("Птички", true, 0, false), UNKNOWN("", false, 0, false);

@@ -1,4 +1,4 @@
-package homework12;
+package homework12.pet;
 
 
 import java.util.Set;
@@ -14,7 +14,6 @@ public class Dog extends Pet implements Foul {
 
     public Dog(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname, age, trickLevel, habits);
-
     }
 
     public void respond() {
@@ -24,6 +23,4 @@ public class Dog extends Pet implements Foul {
     public void foul() {
         System.out.println("Нужно хорошо замести следы...");
     }
-
-
 }

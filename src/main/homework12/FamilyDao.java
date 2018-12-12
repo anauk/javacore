@@ -1,5 +1,7 @@
 package homework12;
 
+import homework12.family.Family;
+
 import java.util.List;
 
 public interface FamilyDao {

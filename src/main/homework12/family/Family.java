@@ -1,15 +1,14 @@
-package homework12;
+package homework12.family;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import homework12.pet.Pet;
 
-public class Family implements HumanCreator{
+import java.util.*;
+
+public class Family implements HumanCreator {
     private Human mother;
     private Human father;
     private List<Human> children;
-    private Set<Pet> pet;
+    private Set<Pet> pet = new HashSet<>();
 
     public Family(Human mother, Human father) {
         this.mother = mother;
@@ -19,7 +18,7 @@ public class Family implements HumanCreator{
         this.children = new ArrayList<>(0);
     }
 
-    public Set<Pet> getPet(){
+    public Set<Pet> getPet() {
         return pet;
     }
 
@@ -29,24 +28,26 @@ public class Family implements HumanCreator{
     }
 
     public boolean deletChild(int index) {
-        int indexResult = children.indexOf(index);
-        if(indexResult >= 0 && !children.isEmpty()){
-            children.remove(indexResult).setFamily(null);
+        if(children != null &&children.size()>0) {
+            if (index >= 0 && index < children.size()) {
+                children.remove(index).setFamily(null);
                 return true;
             } else {
                 return false;
             }
+        }
+        return false;
     }
 
-    public boolean deletMethodChild(Human child) {
-        if(!children.isEmpty()) {
-            children.remove(child);
+    public boolean deletChild(Human child) {
+        if (!children.isEmpty()) {
             child.setFamily(null);
-            return true;
+            return children.remove(child);
         } else {
             return false;
         }
     }
+
     public void addPet(Pet animal) {
         pet.add(animal);
     }
@@ -94,18 +95,18 @@ public class Family implements HumanCreator{
     @Override
     public Human bornChild() {
         Human child;
-        if((int)(Math.random()*2) == 0) {
-            String[] boyName = {"Roma", "Peta", "Kola","Vasa","Kiril"};
-            int boyNameR = (int)(Math.random()*boyName.length);
-            child = new Man(boyName[boyNameR], Man.getSurname(father));
+        if ((int) (Math.random() * 2) == 0) {
+            String[] boyName = {"Roma", "Peta", "Kola", "Vasa", "Kiril"};
+            int boyNameR = (int) (Math.random() * boyName.length);
+            child = new Man(boyName[boyNameR], father.getSurname());
         } else {
-            String[] girlName = {"Lida","Veta", "Olga", "Vlada", "Hasta"};
-            int girlNameR = (int)(Math.random()*girlName.length);
-            child = new Woman(girlName[girlNameR], Man.getSurname(father));
+            String[] girlName = {"Lida", "Veta", "Olga", "Vlada", "Hasta"};
+            int girlNameR = (int) (Math.random() * girlName.length);
+            child = new Woman(girlName[girlNameR], father.getSurname());
         }
         child.setFamily(this);
         this.addChild(child);
-        child.setIQ((mother.IQ+father.IQ)/2);
+        child.setIQ((mother.getIQ() + father.getIQ()) / 2);
         return child;
     }
 }

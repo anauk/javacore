@@ -1,4 +1,4 @@
-package homework12;
+package homework12.family;
 
 public interface HumanCreator {
     Human bornChild();

@@ -1,4 +1,6 @@
-package homework12;
+package homework12.family;
+
+import homework12.pet.Pet;
 
 import java.util.Map;
 import java.util.Objects;
@@ -6,9 +8,9 @@ import java.util.Random;
 
 public class Human {
     private String name;
-    public String surname;
+    private String surname;
     private int year;
-    public int IQ;
+    private int IQ;
     private Family family;
     private Map<String, String> scedule;
 
@@ -62,7 +64,7 @@ public class Human {
         return name;
     }
 
-    private String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
@@ -72,6 +74,10 @@ public class Human {
 
     public int getIQ() {
         return IQ;
+    }
+
+    public void setIQ(int IQ) {
+        this.IQ = IQ;
     }
 
     public void setScedule(Map<String, String> scedule) {
@@ -102,46 +108,54 @@ public class Human {
     }
 
     public void describePet() {
-        if (getFamily().getPet().contains(Species.UNKNOWN)) {
-            switch (Species.UNKNOWN){
-                case CAT: if (Pet.getTrickLevel() > 50) {
-                    System.out.println("У меня есть " + Species.CAT.name() +
-                            ", ему " + Pet.getAge() + " года, он очень хитрый.");
+        if (getFamily().getPet() != null) {
+            for (Pet pet : family.getPet()) {
+                if (pet.getTrickLevel() > 50) {
+                    System.out.println("У меня есть " + pet.getNickname() +
+                            ", ему " + pet.getAge() + " года, он очень хитрый.");
                 } else {
-                    System.out.println("У меня есть " + Species.CAT.name() +
-                            ", ему " + Pet.getAge() + " года, он почти не хитрый.");
+                    System.out.println("У меня есть " + pet.getNickname() +
+                            ", ему " + pet.getAge() + " года, он почти не хитрый.");
                 }
             }
-
+        }
 
     }
 
-}
-
-    void gridPet(Pet animal) {
-        System.out.println("Привет, " + animal.getNickname() + "!");
+    public String gridPet() {
+        StringBuilder result = new StringBuilder();
+        if (getFamily() == null) {
+            return null;
+        } else {
+            for (Pet pet : getFamily().getPet()) {
+                result.append("Привет, ").append(pet.getNickname()).append("!");
+            }
+        }
+        return result.toString();
     }
 
-   /* public boolean feedPet(boolean fraza) {
-        if (fraza == true) {
+    public boolean feedPet(boolean fraza) {
+        if (fraza) {
             System.out.println("Покормил!");
             return true;
         } else {
-            System.out.println("Думаю " + getFamily().getPet().getNickname() + " не голоден");
-            int xz = getFamily().getPet().getTrickLevel();
-            xz += 50;
-            System.out.println(xz);
-            int num = new Random().nextInt(100);
-            System.out.println(num);
-            if (xz > num) {
-                System.out.println("Хм.. покормлю ка я " + getFamily().getPet().getNickname());
-                System.out.println("Покормил!");
-                return true;
+            for (Pet pet : getFamily().getPet()) {
+                System.out.println("Думаю " + pet.getNickname() + " не голоден");
+                int xz = pet.getTrickLevel();
+                xz += 50;
+                System.out.println(xz);
+                int num = new Random().nextInt(100);
+                System.out.println(num);
+                if (xz > num) {
+                    System.out.println("Хм.. покормлю ка я " + pet.getNickname());
+                    System.out.println("Покормил!");
+                    return true;
+                }
             }
+            System.out.println("Не дал!");
+            return false;
         }
-        System.out.println("Не дал!");
-        return false;
-    }*/
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -156,10 +170,6 @@ public class Human {
     @Override
     public int hashCode() {
         return Objects.hash(name, surname, year);
-    }
-
-    public void setIQ(int IQ) {
-        this.IQ = IQ;
     }
 
 }

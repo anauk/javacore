@@ -1,17 +1,16 @@
-package homework12;
+package homework12.pet;
 
 import java.util.Set;
 
-public class RoboCat extends Pet implements Foul {
+public class DomesticCat extends Pet implements Foul {
     {
         setSpecies(Species.CAT);
     }
-
-    public RoboCat(String nickname) {
+    public DomesticCat(String nickname) {
         super(nickname);
     }
 
-    public RoboCat(String nickname, int age, int trickLevel, Set<String> habits) {
+    public DomesticCat(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname, age, trickLevel, habits);
     }
 
@@ -22,5 +21,4 @@ public class RoboCat extends Pet implements Foul {
     public void foul() {
         System.out.println("Нужно хорошо замести следы...");
     }
-
 }

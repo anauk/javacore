@@ -1,5 +1,10 @@
 package homework12;
 
+import homework12.family.Family;
+import homework12.family.Human;
+import homework12.family.Man;
+import homework12.family.Woman;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +12,7 @@ public class CollectionFamilyDao implements FamilyDao {
     List<Family> families;
 
     public CollectionFamilyDao() {
-        families = new ArrayList<Family>();
+        families = new ArrayList<>();
         Human mother = new Woman("Vera","Petrova");
         Human father = new Man("Peta","Petrov");
         Family family1 = new Family(mother, father);

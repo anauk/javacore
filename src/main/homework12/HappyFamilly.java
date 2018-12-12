@@ -1,5 +1,11 @@
 package homework12;
 
+import homework12.family.Family;
+import homework12.family.Human;
+import homework12.family.Man;
+import homework12.family.Woman;
+import homework12.pet.*;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,9 +16,11 @@ public class HappyFamilly {
         Set<String> habits = new HashSet<>();
         habits.add("play");
         habits.add("slep");
+
         Pet cat = new DomesticCat("Vaca", 1, 70, habits);
         ((DomesticCat) cat).foul();
         System.out.println("Это кот! " + cat);
+
         Set<String> habits1 = new HashSet<>();
         habits1.add("swem");
         habits1.add("eat");
@@ -21,28 +29,34 @@ public class HappyFamilly {
         System.out.println("Это рыбка! " + fish);
         fish.respond();
         fish.eat();
+
         System.out.println(Species.CAT.name());
+
         Map<String, String> scedule3 = new HashMap<>();
         scedule3.put(DayOfWeek.FRIDAY.name(), "day_4, task_4");
         Human mother1 = new Woman("Vera", "Petrova", 1966, 79, scedule3);
         System.out.println("Это мама Вера! - " + mother1);
+
         Map<String, String> scedule = new HashMap<>();
         scedule.put(DayOfWeek.MONDAY.name(), "day_2, task_2");
         Human father1 = new Man("Artem", "Petrov", 1966, 79, scedule);
         System.out.println("Это папа Артем! - " + father1);
-        mother1.gridPet(cat);
-        father1.gridPet(cat);
+        mother1.gridPet();
+        father1.gridPet();
+
         Family family1 = new Family(mother1, father1);
         Pet robot = new RoboCat("Meral", 2, 99, habits);
-        //family1.addPet(robot);
+        family1.addPet(robot);
+
         Human boy = new Man("Kola", "Petrov");
         System.out.println("Вот мальчик Коля!");
         family1.addChild(boy);
         System.out.println(family1.countFamily());
-        Human girl = new Human("Lera", "Petrova");
-        Human girl2 = new Human("Vera", "Petrova");
+
+        Human girl = new Woman("Lera", "Petrova");
+        Human girl2 = new Woman("Vera", "Petrova");
         System.out.println("Вот девочка Лера! " + girl);
-        Human[] children = {boy, girl, girl2};
+
         System.out.println("Они брат и сестры ");
         family1.addChild(girl);
         family1.addChild(girl2);
@@ -50,7 +64,7 @@ public class HappyFamilly {
         System.out.println("А вот они вместе с семьей: " + family1);
         System.out.println("Кто-то издетей ушел из семьи?! " + family1.deletChild(0));
         System.out.println(family1);
-        System.out.println("Дочь Лера выросла и ушла из семьи?! " + family1.deletMethodChild(girl));
+        System.out.println("Дочь Лера выросла и ушла из семьи?! " + family1.deletChild(girl));
         System.out.println("А куда ушел третий ребенок?! " + family1.deletChild(2) + " Нет столько детей в этой семьи!");
         System.out.println(family1);
         System.out.println("Ушли все дети! " + family1.deletChild(0));
@@ -88,7 +102,9 @@ public class HappyFamilly {
         for (Family family:familyDao.getAllFamilies()) {
             System.out.println("family: "+family);
         }
+
         System.out.println("Family under index 0 = "+ familyDao.getFamilyByIndex(0));
+        System.out.println("Family under index 1 = "+ familyDao.getFamilyByIndex(1));
         System.out.println(familyDao.deleteFamily(1));
         System.out.println(familyDao.deleteFamily(family1));
     }
