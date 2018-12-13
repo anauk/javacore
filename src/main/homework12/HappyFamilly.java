@@ -1,5 +1,7 @@
 package homework12;
 
+import homework12.famelyDao.CollectionFamilyDao;
+import homework12.famelyDao.FamilyDao;
 import homework12.family.Family;
 import homework12.family.Human;
 import homework12.family.Man;
@@ -99,6 +101,8 @@ public class HappyFamilly {
         System.out.println(child1+ " " +child2);
 
         FamilyDao familyDao = new CollectionFamilyDao();
+        familyDao.saveFamily(family1);
+        familyDao.saveFamily(family2);
         for (Family family:familyDao.getAllFamilies()) {
             System.out.println("family: "+family);
         }
@@ -107,5 +111,6 @@ public class HappyFamilly {
         System.out.println("Family under index 1 = "+ familyDao.getFamilyByIndex(1));
         System.out.println(familyDao.deleteFamily(1));
         System.out.println(familyDao.deleteFamily(family1));
+
     }
 }

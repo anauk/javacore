@@ -1,4 +1,4 @@
-package homework12;
+package homework12.famelyDao;
 
 import homework12.family.Family;
 
