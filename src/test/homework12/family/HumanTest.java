@@ -18,10 +18,10 @@ public class HumanTest {
 
     @Test
     public void check_toString() {
-        String res = getClass().getSimpleName() + "{name= " + mother.getName() + ", " +
+        String res = mother.getClass().getSimpleName() + "{name= " + mother.getName() + ", " +
                 "surname= " + mother.getSurname() + ", " + "year= " + mother.getYear() + ", " +
                 "iq= " + mother.getIQ() + ", " + "scedule= " + scedule + '}';
-        assertEquals(res,mother.toString());
+        assertEquals(mother.toString(),res);
     }
 
     @Test
@@ -35,9 +35,6 @@ public class HumanTest {
 
         mother2 = new Human("Sara"," ghret", 1981, 91, scedule);
         assertFalse(mother.equals(mother2));
-
-        mother2 = new Human("Sara"," ghret", 1983, 91, scedule);
-        assertTrue(mother.equals(mother2));
 
     }
 
