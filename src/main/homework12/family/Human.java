@@ -60,7 +60,7 @@ public class Human {
         this.family = family;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -68,7 +68,7 @@ public class Human {
         return surname;
     }
 
-    private int getYear() {
+    public int getYear() {
         return year;
     }
 

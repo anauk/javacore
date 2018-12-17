@@ -22,6 +22,10 @@ public class Family implements HumanCreator {
         return pet;
     }
 
+    public List<Human> getChildren() {
+        return children;
+    }
+
     public void addChild(Human child) {
         children.add(child);
         child.setFamily(this);
