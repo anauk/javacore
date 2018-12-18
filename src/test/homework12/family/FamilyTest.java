@@ -59,24 +59,24 @@ public class FamilyTest {
     }
     @Test
     public void checkHashCode(){
-        father2 = father;
-        if(father2.equals(father)){
-            assertTrue(father2.hashCode() == father.hashCode());
-        }
+        Human father3 = new Human("John", "Rondebush",1974,95,fatherSce);
+        assertTrue(father3.equals(father));
+        assertTrue(father3.hashCode() == father.hashCode());
+
     }
     @Test
     public void checkMethodEquals(){
-        mother2 = mother;
-        if(mother2.equals(mother)&& mother.equals(mother2)){
-            assertTrue(true);
-        }
-        assertTrue(mother2.equals(mother));
-        Human mother3= new Woman("Pola", "Ritrova");
-        mother = mother3;
-        if(mother2.equals(mother)&&mother.equals(mother3)){
-            assertTrue(mother2.equals(mother3));
-        }
-        assertTrue(mother2.equals(mother2));
+        Human mother4 = new Human("froca", "Davinchy",2000,90,motherSce);
+        assertTrue(mother4.equals(mother2));
+        assertTrue(mother2.equals(mother4));
+
+        Human mother3= new Human("froca", "Davinchy",2000,90,motherSce);
+
+        assertTrue(mother3.equals(mother4));
+        assertTrue(mother4.equals(mother2));
+
+        mother3 = null;
+        assertFalse(mother2.equals(mother3));
     }
     @Test
     public void checkCountFamily(){
@@ -96,17 +96,24 @@ public class FamilyTest {
     }
     @Test
     public void checkDeleteChild() {
-        int len = family.getChildren().size();
-        family.deletChild(1);
-        int res = family.getChildren().size()-1;
+        Human child6 = new Human("Bob", "Rondebush",1956,45 ,childSce);
+        Human child7 = new Human("eric", "Rondebushr",1748,10 ,childSce);
+        Family family1 = new Family(mother,father);
+        family1.addChild(child6);
+        family1.addChild(child7);
+        int len = family1.getChildren().size();
+        System.out.println(len);
+        family1.deletChild(1);
+
+        int res = family1.getChildren().size();
+        System.out.println(res);
         assertEquals(res, len-1);
-        family.addChild(child3);
-        family.addChild(child4);
-        assertSame(child4,family.getChildren().remove(1));
-        family2.addChild(child5);
-        family2.deletChild(child5);
-        for (Human child:family2.getChildren()) {
-            assertSame(child, child5);
+
+        family1.addChild(child5);
+        assertSame(child5,family1.getChildren().remove(1));
+
+        for (Human child:family1.getChildren()) {
+            assertSame(child, child6);
         }
     }
 
