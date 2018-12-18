@@ -101,13 +101,13 @@ public class HappyFamilly {
         System.out.println(child1+ " " +child2);
 
         FamilyDao familyDao = new CollectionFamilyDao();
-        Human mother4 = new Woman("Vera","Petrova");
-        Human father4 = new Man("Peta","Petrov");
+        Human mother4 = new Woman("Vera","Pet");
+        Human father4 = new Man("Peta","Pet");
         Family family4 = new Family(mother4, father4);
         familyDao.saveFamily(family4);
         System.out.println(familyDao.getAllFamilies());
-        Human mother5 = new Woman("Vera","Petrova");
-        Human father5 = new Man("Peta","Petrov");
+        Human mother5 = new Woman("Olga","Qwerty");
+        Human father5 = new Man("Vlad","Qwerty");
         Family family5 = new Family(mother5, father5);
         familyDao.saveFamily(family5);
         familyDao.saveFamily(family1);
@@ -119,7 +119,12 @@ public class HappyFamilly {
         System.out.println("Family under index 1 = "+ familyDao.getFamilyByIndex(1));
         System.out.println(familyDao.deleteFamily(1));
         System.out.println(familyDao.deleteFamily(family1));
+        System.out.println(familyDao.getAllFamilies());
+        System.out.println(familyDao.deleteFamily(1));
+        System.out.println(familyDao.getAllFamilies());
         System.out.println(familyDao.deleteFamily(0));
+        System.out.println(familyDao.deleteFamily(0));
+
         for (Family family:familyDao.getAllFamilies()) {
             System.out.println("family dao: "+family);
         }

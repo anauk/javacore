@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionFamilyDao implements FamilyDao {
-    List<Family> families = new ArrayList<>();
+    private List<Family> families = new ArrayList<>();
 
     @Override
     public List<Family> getAllFamilies() {
@@ -23,9 +23,12 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public boolean deleteFamily(int index) {
-        for (int i = families.size() - 1; i >= 0; i--) {
+        try {
+            if (index > families.size() || index < 0) return false;
             families.remove(index);
             return true;
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("В листе нет столько семей");
         }
         return false;
     }
