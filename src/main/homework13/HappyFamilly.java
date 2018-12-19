@@ -1,6 +1,5 @@
 package homework13;
 
-//import homework13.famelyDao.CollectionFamilyDao;
 import homework13.famelyDao.CollectionFamilyDao;
 import homework13.famelyDao.FamilyController;
 import homework13.famelyDao.FamilyDao;
@@ -113,7 +112,6 @@ public class HappyFamilly {
         for(Family f:familyController.getAllFamilies()) {
             System.out.println(f);
         }
-
 
         familyController.displayAllFamilies();
         familyController.getFamiliesBiggerThan(2);
