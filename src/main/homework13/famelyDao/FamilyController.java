@@ -46,8 +46,11 @@ public class FamilyController {
     public Family adoptChild(Family family, Human child){
         return familyService.adoptChild(family, child);
     }
-    public List<Family> deleteAllChildrenOlderThen(int age){
-       return familyService.deleteAllChildrenOlderThen(age);
+    public void deleteAllChildrenOlderThen(int age){
+       familyService.deleteAllChildrenOlderThen(age);
+    }
+    public void deleteAllChildrenOlderThen1(int age){
+        familyService.deleteAllChildrenOlderThen1(age);
     }
     public int count() {
         return familyService.count();

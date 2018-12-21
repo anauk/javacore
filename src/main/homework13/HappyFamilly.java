@@ -110,13 +110,13 @@ public class HappyFamilly {
         familyController.createNewFamily(mother2,father2);
         familyController.createNewFamily(mother1,father1);
         for(Family f:familyController.getAllFamilies()) {
-            System.out.println(f);
+            System.out.println("Вывод всех семей: "+ f);
         }
-
+        System.out.println("Method displayAllFamilies: ");
         familyController.displayAllFamilies();
-        familyController.getFamiliesBiggerThan(2);
-        familyController.getFamiliesLessThan(2);
-        familyController.countFamiliesWithMemberNumber(3);
+        System.out.println("Все семиьи с количеством человек больше 2: "+ familyController.getFamiliesBiggerThan(2));
+        System.out.println("Все семиьи с количеством человек меньше 2: "+familyController.getFamiliesLessThan(2));
+        System.out.println("Семьи,где количество человек равное 2: "+familyController.countFamiliesWithMemberNumber(2));
 
         Woman woman = new Woman("Ani", "Greed");
         Man man = new Man("Arten", "Vlasov");
@@ -124,25 +124,48 @@ public class HappyFamilly {
 
         familyController.bornChild(familyController.getFamilyById(0), "Arseni",null);
 
-        Human child4 = new Man("Lolic", "Shmolic");
-        familyController.adoptChild(familyController.getFamilyById(0), child4);
-        System.out.println(familyController.getFamilyById(0));
+        Human child4 = new Man("Lolic", "Shmolic", 1981,91,new HashMap<>());
+        familyController.adoptChild(familyController.getFamilyById(1), child4);
+        System.out.println(familyController.getFamilyById(1));
 
         familyController.addPet(3, cat);
         System.out.println(familyController.getFamilyById(3));
         System.out.println(familyController.getFamilyById(0).getChildren());
         System.out.println(familyController.getFamilyById(0).getPet());
 
-        familyController.deleteAllChildrenOlderThen(20);
+        Human child5 = new Man("Lolic", "Shmolic", 1983,91,new HashMap<>());
+        Human child6 = new Man("Rita", "Shmolic", 2001,91,new HashMap<>());
+        Human child7 = new Man("Misha", "Shmolic", 2004,91,new HashMap<>());
+
+
         familyController.deleteFamilyByIndex(0);
 
-        familyController.displayAllFamilies();
+        System.out.println("Семья с индексом 0: "+familyController.getFamilyById(0));
+        familyService.bornChild(familyService.getFamilyById(1), "Lolic","Rita");
+        familyController.adoptChild(familyController.getFamilyById(2), child6);
+        familyController.adoptChild(familyController.getFamilyById(1), child7);
+        familyController.adoptChild(familyController.getFamilyById(2), child5);
+        for(Family f:familyController.getAllFamilies()) {
+            System.out.println("Вывод всех семей: "+ f);
+        }
+
+        System.out.println("Семья с индексом 2 и ее дети: "+familyController.getFamilyById(2).getChildren());
+
+        familyController.deleteAllChildrenOlderThen1(20);
+        System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen1: ");
+        for(Family f:familyController.getAllFamilies()) {
+            System.out.println(f);
+        }
+        familyController.deleteAllChildrenOlderThen(11);
+        System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen: ");
+        for(Family f:familyController.getAllFamilies()) {
+            System.out.println(f);
+        }
 
         System.out.println(familyController.getFamilyById(3));
 
         System.out.println(familyController.getPets(0));
-        System.out.println(familyController.getPets(3));
-
+        System.out.println(familyController.getPets(2));
 
     }
 }

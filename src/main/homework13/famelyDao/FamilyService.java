@@ -3,14 +3,11 @@ package homework13.famelyDao;
 
 import homework13.family.Family;
 import homework13.family.Human;
-import homework13.family.Man;
 import homework13.family.Woman;
 import homework13.pet.Pet;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 public class FamilyService {
     private FamilyDao familyDao;
@@ -18,13 +15,11 @@ public class FamilyService {
     public FamilyService(FamilyDao familyDao) {
         this.familyDao = familyDao;
     }
-
+    private boolean checkIndexOfFamily(int i) {
+        return i >= familyDao.getAllFamilies().size() || i < 0;
+    }
     public List<Family> getAllFamilies() {
         return familyDao.getAllFamilies();
-    }
-
-    public boolean checkIndexOfFamily(int i) {
-        return i < familyDao.getAllFamilies().size() && i >= 0;
     }
 
     public void displayAllFamilies() {
@@ -87,8 +82,36 @@ public class FamilyService {
         return family;
     }
 
-    public List<Family> deleteAllChildrenOlderThen(int age) {
-        List<Family> result = null;
+    public void deleteAllChildrenOlderThen(int age) {
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int nowYear = cal.get(Calendar.YEAR);
+        for(Family family : familyDao.getAllFamilies()){
+            Iterator<Human> it = family.getChildren().iterator();
+            while(it.hasNext()){
+                Human child = it.next();
+                int year = nowYear - child.getYear();
+                if(year > age){
+                    it.remove();
+                }
+            }
+        }
+    }
+    public List<Family> deleteAllChildrenOlderThen1(int age){
+        int yearNow = LocalDate.now().getYear();
+        List<Family> result = new ArrayList<>();
+        for(Family family : familyDao.getAllFamilies()){
+            Iterator<Human> it = family.getChildren().iterator();
+            while(it.hasNext()){
+                Human child = it.next();
+                int differenceYear = yearNow - child.getYear();
+                if(differenceYear > age){
+                    it.remove();
+                    result.add(family);
+                }
+            }
+        }
         return result;
     }
 
@@ -97,17 +120,17 @@ public class FamilyService {
     }
 
     public Family getFamilyById(int index) {
-        if (!checkIndexOfFamily(index)) return null;
+        if (checkIndexOfFamily(index)) return null;
         return familyDao.getAllFamilies().get(index);
     }
 
     public Set<Pet> getPets(int index) {
-        if(!checkIndexOfFamily(index)) return null;
+        if(checkIndexOfFamily(index)) return null;
         return familyDao.getAllFamilies().get(index).getPet();
     }
 
     public Family addPet(int index, Pet pet) {
-        if(!checkIndexOfFamily(index)) return null;
+        if(checkIndexOfFamily(index)) return null;
         Family family = getFamilyById(index);
         family.addPet(pet);
         return family;
