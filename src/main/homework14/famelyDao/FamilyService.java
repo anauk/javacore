@@ -106,11 +106,19 @@ public class FamilyService {
         for(Family family : familyDao.getAllFamilies()){
             for(Iterator<Human> iter = family.getChildren().iterator(); iter.hasNext();){
                 Human child = iter.next();
+                LocalDate toDate = new Date(child.getYear()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate now = LocalDate.now();
+                int childYear = now.minusYears(toDate.getYear()).getYear();
+                if( childYear > age){
+                    iter.remove();
+                    result.add(family);
+                }
+                /*-2-й способ используя период:
                 Period periodYearsMonthsDays = Period.between(child.invertToLocalDate(new Date(child.getYear())), child.invertToLocalDate(new Date()));
                 if( periodYearsMonthsDays.getYears() > age){
                     iter.remove();
                     result.add(family);
-                }
+                }*/
             }
         }
         return result;
