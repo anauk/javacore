@@ -23,14 +23,9 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public boolean deleteFamily(int index) {
-        try {
-            if (index > families.size() || index < 0) return false;
+            if (index >= families.size() || index < 0) return false;
             families.remove(index);
             return true;
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("В листе нет столько семей");
-        }
-        return false;
     }
 
     @Override
