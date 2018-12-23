@@ -136,6 +136,8 @@ public class HappyFamilly {
         Human child5 = new Man("Lolic", "Shmolic", "15/06/1983",91,new HashMap<>());
         Human child6 = new Man("Rita", "Shmolic", "14/03/2001",91,new HashMap<>());
         Human child7 = new Man("Misha", "Shmolic", "11/11/2004",91,new HashMap<>());
+        Human child8 = new Man("Ola", "Shmolic", "28/01/1978",91,new HashMap<>());
+        Human child9 = new Man("Feda", "Shmolic", "30/12/1979",91,new HashMap<>());
 
 
         familyController.deleteFamilyByIndex(0);
@@ -145,6 +147,8 @@ public class HappyFamilly {
         familyController.adoptChild(familyController.getFamilyById(2), child6);
         familyController.adoptChild(familyController.getFamilyById(1), child7);
         familyController.adoptChild(familyController.getFamilyById(2), child5);
+        familyController.adoptChild(familyController.getFamilyById(2), child8);
+        familyController.adoptChild(familyController.getFamilyById(2), child9);
         for(Human child:family3.getChildren()){
             System.out.println(child.getName()+": "+child.describeAge());
         }
@@ -156,8 +160,9 @@ public class HappyFamilly {
 
         familyController.deleteAllChildrenOlderThen1(35);
         System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen1: ");
+        int count = 1;
         for(Family f:familyController.getAllFamilies()) {
-            System.out.println(f);
+            System.out.println((count++)+ " " +f);
         }
         familyController.deleteAllChildrenOlderThen(11);
         System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen: ");
