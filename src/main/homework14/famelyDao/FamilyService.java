@@ -101,16 +101,14 @@ public class FamilyService {
             }
         }
     }
-    public List<Family> deleteAllChildrenOlderThen1(int age){
-        List<Family> result = new ArrayList<>();
+    public Set<Family> deleteAllChildrenOlderThen1(int age){
+        Set<Family> result = new HashSet<>();
         for(Family family : familyDao.getAllFamilies()){
-            for(Human child:family.getChildren()){
+            for(Iterator<Human> iter = family.getChildren().iterator(); iter.hasNext();){
+                Human child = iter.next();
                 Period periodYearsMonthsDays = Period.between(child.invertToLocalDate(new Date(child.getYear())), child.invertToLocalDate(new Date()));
-                System.out.println(child.invertToLocalDate(new Date(child.getYear())));
-                System.out.println(child.invertToLocalDate(new Date()));
-                System.out.println(periodYearsMonthsDays.getYears());
                 if( periodYearsMonthsDays.getYears() > age){
-                    family.getChildren().remove(child);
+                    iter.remove();
                     result.add(family);
                 }
             }

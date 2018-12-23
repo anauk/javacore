@@ -154,12 +154,12 @@ public class HappyFamilly {
 
         System.out.println("Семья с индексом 2 и ее дети: "+familyController.getFamilyById(2).getChildren());
 
-        familyController.deleteAllChildrenOlderThen1(11);
+        familyController.deleteAllChildrenOlderThen1(35);
         System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen1: ");
         for(Family f:familyController.getAllFamilies()) {
             System.out.println(f);
         }
-        familyController.deleteAllChildrenOlderThen(20);
+        familyController.deleteAllChildrenOlderThen(11);
         System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen: ");
         for(Family f:familyController.getAllFamilies()) {
             System.out.println(f);
