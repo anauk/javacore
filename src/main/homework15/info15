@@ -1,0 +1,19 @@
+Основные нововведения Java 8 – lambda, stream
+
+Задание
+Усовершенствуйте проект: в проекте реализуйте возможности Java 8.
+
+Технические требования:
+
+Сделайте рефакторинг классов FamilyService так, чтобы они использовал возможности Java 8. Рефакторингу подлежат следующие методы:
+
+
+displayAllFamilies();
+
+getFamiliesBiggerThan(int count);
+
+getFamiliesLessThan(int count);
+
+countFamiliesWithMemberNumber;
+
+deleteAllChildrenOlderThan;
