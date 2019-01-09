@@ -5,16 +5,20 @@ import homework16.pet.Pet;
 import java.util.Map;
 
 final public class Woman extends Human {
+    public Woman(String name, String surname) {
+        super(name, surname);
+    }
+
+    public Woman(String name, String surname, String birthday, int IQ) {
+        super(name, surname, birthday, IQ);
+    }
+
     public Woman(String name, String surname, String birthday, int IQ, Map<String, String> scedule) {
         super(name, surname, birthday, IQ, scedule);
     }
 
     public int getIq() {
         return getIQ();
-    }
-
-    public Woman(String name, String surname) {
-        super(name, surname);
     }
 
     public void makeUp() {
@@ -24,10 +28,10 @@ final public class Woman extends Human {
     @Override
     public String gridPet() {
         StringBuilder result = new StringBuilder();
-        if(getFamily() == null){
+        if (getFamily() == null) {
             return null;
-        } else{
-            for (Pet pet:getFamily().getPet()) {
+        } else {
+            for (Pet pet : getFamily().getPet()) {
                 result.append("Привет, ").append(pet.getNickname()).append("! Я рада тебя видеть!");
 
             }

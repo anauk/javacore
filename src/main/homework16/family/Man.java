@@ -5,19 +5,24 @@ import homework16.pet.Pet;
 import java.util.Map;
 
 final public class Man extends Human {
+    public Man(String name, String surname) {
+        super(name, surname);
+    }
+
+    public Man(String name, String surname, String birthday, int IQ) {
+        super(name, surname, birthday, IQ);
+    }
 
     public Man(String name, String surname, String birthday, int IQ, Map<String, String> scedule) {
         super(name, surname, birthday, IQ, scedule);
     }
 
-    public Man(String name, String surname) {
-        super(name, surname);
-    }
 
-    public int getIq(){
+    public int getIq() {
         return getIQ();
     }
-    public void repairCar(){
+
+    public void repairCar() {
         System.out.println("Закнчиваю все дела...,и иду смотреть машину!");
     }
 

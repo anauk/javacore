@@ -57,13 +57,14 @@ public class Family implements HumanCreator {
         pet.add(animal);
     }
 
-    @Override
+    /*@Override
     public String toString() {
-        return "mother = " + this.mother + ", " +
-                "father = " + this.father + ", " +
+        return "mother = " + this.mother + ", \n" +
+                "father = " + this.father + ", \n" +
                 "children = " + children;
-    }
-    public String prettyFormat(){
+    }*/
+    @Override
+    public String toString(){
         String[] childrenArray = new String[children.size()];
         for (int i = 0; i < children.size(); i++) {
             if(children.get(i) instanceof Man) {

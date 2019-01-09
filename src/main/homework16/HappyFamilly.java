@@ -26,7 +26,7 @@ public class HappyFamilly {
         Set<String> habits1 = new HashSet<>();
         habits1.add("swem");
         habits1.add("eat");
-        Pet fish = new Fish("Molly", 1,20, habits1);
+        Pet fish = new Fish("Molly", 1, 20, habits1);
         System.out.println(fish.getClass());
         System.out.println("Это рыбка! " + fish);
         fish.respond();
@@ -90,193 +90,141 @@ public class HappyFamilly {
         System.out.println("Вот третья семья!");
         Map<String, String> scedule0 = new HashMap<>();
         scedule0.put(DayOfWeek.WEDNESDAY.name(), "day_3, task_3");
-        Human mother3 = new Woman("Poza", "Kochetkova","15/02/1973", 91, scedule0);
+        Human mother3 = new Woman("Poza", "Kochetkova", "15/02/1973", 91, scedule0);
         System.out.println("Это мама " + mother2);
         Map<String, String> scedule2 = new HashMap<>();
         scedule2.put(DayOfWeek.SATURDAY.name(), "day_2, task_2");
-        Human father3 = new Man("Artur", "Pirogkov","02/05/1970", 82, scedule2);
+        Human father3 = new Man("Artur", "Pirogkov", "02/05/1970", 82, scedule2);
         Family family3 = new Family(mother3, father3);
         Human child1 = family3.bornChild();
         Human child2 = family3.bornChild();
-        System.out.println(child1+ " " +child2);
+        System.out.println(child1 + " " + child2);
 
         FamilyDao familyDao = new CollectionFamilyDao();
         FamilyService familyService = new FamilyService(familyDao);
         FamilyController familyController = new FamilyController(familyService);
 
-        /*familyController.createNewFamily(mother3,father3);
-        familyController.createNewFamily(mother2,father2);
-        familyController.createNewFamily(mother1,father1);
-        for(Family f:familyController.getAllFamilies()) {
-            System.out.println("Вывод всех семей: "+ f);
-        }
-        System.out.println("Method displayAllFamilies: ");
-        familyController.displayAllFamilies();
-        System.out.println("Все семиьи с количеством человек больше 1(Void): ");
-        familyController.getFamiliesBiggerThan(1);
-        System.out.println("Все семиьи с количеством человек больше 1(List): "+familyController.getFamiliesBiggerThan1(1));
-        System.out.println("Все семиьи с количеством человек меньше 3: "+familyController.getFamiliesLessThan(3));
-        System.out.println("Семьи,где количество человек равное 2: "+familyController.countFamiliesWithMemberNumber(2));
-
-        Woman woman = new Woman("Ani", "Greed");
-        Man man = new Man("Arten", "Vlasov");
-        familyController.createNewFamily(woman,man);
-
-        familyController.bornChild(familyController.getFamilyById(0), "Arseni",null);
-
-        Human child4 = new Man("Lolic", "Shmolic", "12/09/1981",91,new HashMap<>());
-        familyController.adoptChild(familyController.getFamilyById(1), child4);
-        System.out.println(familyController.getFamilyById(1));
-
-        familyController.addPet(3, cat);
-        System.out.println(familyController.getFamilyById(3));
-        System.out.println(familyController.getFamilyById(0).getChildren());
-        System.out.println(familyController.getFamilyById(0).getPet());
-
-        Human child5 = new Man("Lolic", "Shmolic", "15/06/1983",91,new HashMap<>());
-        Human child6 = new Man("Rita", "Shmolic", "14/03/2001",91,new HashMap<>());
-        Human child7 = new Man("Misha", "Shmolic", "11/11/2004",91,new HashMap<>());
-        Human child8 = new Man("Ola", "Shmolic", "28/01/1978",91,new HashMap<>());
-        Human child9 = new Man("Feda", "Shmolic", "30/12/1979",91,new HashMap<>());
-
-
-        familyController.deleteFamilyByIndex(0);
-
-        System.out.println("Семья с индексом 0: "+familyController.getFamilyById(0));
-        familyService.bornChild(familyService.getFamilyById(1), "Lolic","Rita");
-        familyController.adoptChild(familyController.getFamilyById(2), child6);
-        familyController.adoptChild(familyController.getFamilyById(1), child7);
-        familyController.adoptChild(familyController.getFamilyById(2), child5);
-        familyController.adoptChild(familyController.getFamilyById(2), child8);
-        familyController.adoptChild(familyController.getFamilyById(2), child9);
-        for(Human child:family3.getChildren()){
-            System.out.println(child.getName()+": "+child.describeAge());
-        }
-        for(Family f:familyController.getAllFamilies()) {
-            System.out.println("Вывод всех семей: "+ f);
-        }
-
-        System.out.println("Семья с индексом 2 и ее дети: "+familyController.getFamilyById(2).getChildren());
-
-        familyController.deleteAllChildrenOlderThen1(35);
-        System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen1: ");
-        int count = 1;
-        for(Family f:familyController.getAllFamilies()) {
-            System.out.println((count++)+ " " +f);
-        }
-        familyController.deleteAllChildrenOlderThen(11);
-        System.out.println("Вывод всех семей после метода deleteAllChildrenOlderThen: ");
-        for(Family f:familyController.getAllFamilies()) {
-            System.out.println(f);
-        }
-
-        System.out.println(familyController.getFamilyById(3));
-
-        System.out.println(familyController.getPets(0));
-        System.out.println(familyController.getPets(2));
-        System.out.println(father1.describeAge());
-
-        System.out.println(child7);*/
-
-        outerLoop: while (true) {
+        outerLoop:
+        while (true) {
             Scanner s = new Scanner(System.in);
-            try {
-                while (true) {
-                    System.out.println("Enter your choice:");
-                    String number = s.nextLine();;
-                    displayChoiceList();
-                    int choice = s.nextInt();
-                    switch (choice) {
-                        case 1:
-                            familyController.createNewFamily(mother1, father1);
-                            continue outerLoop;
-                        case 2:
-                            familyController.displayAllFamilies();
-                            continue outerLoop;
-                        case 3:
-                            System.out.println("Укажите количество людей в семье:");
-                            familyController.getFamiliesBiggerThan(Integer.parseInt(number));
-                            continue outerLoop;
-                        case 4:
-                            System.out.println("Укажите количество людей в семье:");
-                            familyController.getFamiliesLessThan(Integer.parseInt(number));
-                            continue outerLoop;
-                        case 5:
-                            System.out.println("Укажите количество людей в семье:");
-                            familyController.countFamiliesWithMemberNumber(Integer.parseInt(number));
-                            continue outerLoop;
-                        case 6:
-                            familyController.createNewFamily(askMother(),askFather());
-                            continue outerLoop;
-                        case 7:
-                            System.out.println("Укажите порядковый номер семьи: ");
-                            familyController.deleteFamilyByIndex(Integer.parseInt(number)-1);
-                            continue outerLoop;
-                        case 8:
-                            displayEditFamily();
-                            switch (choice){
-                                case 1:
-                                    System.out.println("порядковый номер семьи?");
+            displayChoiceList();
+            String number;
+            String choice = s.nextLine();
+            switch (choice) {
+                case "1":
+                    familyController.createNewFamily(mother1, father1);
+                    familyController.createNewFamily(mother2, father2);
+                    familyController.createNewFamily(mother3, father3);
+                    continue outerLoop;
+                case "2":
+                    familyController.displayAllFamilies();
+                    continue outerLoop;
+                case "3":
+                    System.out.println("Укажите количество людей в семье:");
+                    number = s.nextLine();
+                    familyController.getFamiliesBiggerThan(Integer.parseInt(number));
+                    continue outerLoop;
+                case "4":
+                    System.out.println("Укажите количество людей в семье:");
+                    number = s.nextLine();
+                    familyController.getFamiliesLessThan(Integer.parseInt(number));
+                    continue outerLoop;
+                case "5":
+                    System.out.println("Укажите количество людей в семье:");
+                    number = s.nextLine();
+                    System.out.println("Количество семей, где количество людей "+number+" = "+familyController.countFamiliesWithMemberNumber(Integer.parseInt(number)));
+                    continue outerLoop;
+                case "6":
+                    familyController.createNewFamily(createHuman(true, false), createHuman(false, false));
+                    continue outerLoop;
+                case "7":
+                    System.out.println("Укажите порядковый номер семьи: ");
+                    number = s.nextLine();
+                    familyController.deleteFamilyByIndex(Integer.parseInt(number) - 1);
+                    System.out.println("Семья под номером "+number+ " удалена.");
+                    continue outerLoop;
+                case "8":
+                    displayEditFamily();
+                    String chooze = s.nextLine();
+                    switch (chooze) {
+                        case "1":
+                            System.out.println("порядковый номер семьи?");
+                            number = s.nextLine();
 
-                                    System.out.println("какое имя дать мальчику?");
-                                    String boyName = s.nextLine();
+                            System.out.println("какое имя дать мальчику?");
+                            String boyName = s.nextLine();
 
-                                    System.out.println("какое имя дать девочке?");
-                                    String girlName = s.nextLine();
+                            System.out.println("какое имя дать девочке?");
+                            String girlName = s.nextLine();
 
-                                    familyController.bornChild(familyController.getFamilyById(Integer.parseInt(number)-1),boyName,girlName);
-                                    continue outerLoop;
-                                case 2:
-                                    System.out.println("порядковый номер семьи?");
-                                    System.out.println("ФИО?");
-                                    System.out.println("год рождения");
-                                    System.out.println("интеллект");
-                                    familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number)-1),child1);
-                                    continue outerLoop;
-                                case 3:
-                                    continue outerLoop;
-                                default :
-                                    System.out.println("Щшибка ввода!");
-                                    continue outerLoop;
-
-                            }
-                        case 9:
-                            System.out.println("Укажите возраст ребенка, чтобы удалить его из семьи");
-                            familyController.deleteAllChildrenOlderThen(Integer.parseInt(number));
+                            familyController.bornChild(familyController.getFamilyById(Integer.parseInt(number) - 1), boyName, girlName);
+                            System.out.println("Поздравляем, у вас родился ребенок!");
+                            System.out.println(familyController.getFamilyById(Integer.parseInt(number)-1));
                             continue outerLoop;
-                        case 10:
-                            break outerLoop;
+                        case "2":
+                            System.out.println("порядковый номер семьи?");
+                            number = s.nextLine();
+                            System.out.println("Введите пол ребенка: male-мужской, female-женский");
+                            String gender = s.nextLine();
+                            boolean genderMorW = gender.toLowerCase().trim().equals("female")?true:false;
+                            familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number) - 1), createHuman(genderMorW,true));
+                            continue outerLoop;
+                        case "3":
+                            continue outerLoop;
+                        default:
+                            System.out.println("Ошибка ввода!");
+                            continue outerLoop;
+
                     }
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error: " + e.getMessage());
+                case "9":
+                    System.out.println("Укажите возраст ребенка, чтобы удалить его из семьи");
+                    number = s.nextLine();
+                    familyController.deleteAllChildrenOlderThen(Integer.parseInt(number));
+                    continue outerLoop;
+                case "10":
+                    break outerLoop;
+                default:
+                    System.out.println("Что-то пошло не так!");
             }
         }
-}
-
-    private static Human askMother() {
-        Human t = null;
-        return t;
     }
-    private static Human askFather() {
-        Human t = null;
-        return t;
+
+    private static Human createHuman(boolean gender, boolean child) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
+        System.out.println(!child ? gender ? "Введите фамилию матери!" : "Введите фамилию отца!" : "Ввведите фамилию ребенка");
+        System.out.println(!child ? gender ? "Введите год рождения матери!(гггг)" : "Введите год рождения  отца!(гггг)" : "Ввведите год рождения  ребенка (гггг)");
+        System.out.println(!child ? gender ? "Введите месяц рождения матери!(мм)" : "Введите месяц рождения отца!(мм)" : "Ввведите месяц рождения  ребенка (мм)");
+        System.out.println(!child ? gender ? "Введите день рождения матери!(дд)" : "Введите день рождения отца!(дд)" : "Ввведите день рождения  ребенка (дд)");
+        System.out.println(!child ? gender ? "Введите iq матери!" : "Введите iq отца!" : "Ввведите iq ребенка ");
+
+        String name = scanner.nextLine();
+        String surname = scanner.nextLine();
+        String year = scanner.nextLine();
+        String month = scanner.nextLine();
+        String day = scanner.nextLine();
+        String iq = scanner.nextLine();
+
+        String dateOfBerth = day+"/"+month+"/"+year;
+        Human human = gender ? new Woman(name, surname, dateOfBerth, Integer.parseInt(iq)) : new Man(name, surname, dateOfBerth, Integer.parseInt(iq));
+        return human;
     }
 
     private static void displayChoiceList() {
-        String[] choices = new String[] { "Заполнить тестовыми данными.", "Отобразить весь список семей",
+        String[] choices = new String[]{"Заполнить тестовыми данными.", "Отобразить весь список семей",
                 "Отобразить список семей, где количество людей больше заданного", "Отобразить список семей, где количество людей меньше заданного",
                 "Подсчитать количество семей, где количество членов равно", "Создать новую семью",
                 "Удалить семью по индексу семьи в общем списке", "Редактировать семью по индексу семьи в общем списке",
-                "Удалить всех детей старше возраста...", "Exit" };
+                "Удалить всех детей старше возраста...", "Exit"};
         int id = 0;
         for (String choice : choices) {
             System.out.println((id + 1) + ". " + choice);
             ++id;
         }
     }
+
     private static void displayEditFamily() {
-        String[] choices = new String[] { "Родить ребенка", "Усыновить ребенка",
+        String[] choices = new String[]{"Родить ребенка", "Усыновить ребенка",
                 "Вернуться в главное меню"};
         int id = 0;
         for (String choice : choices) {
@@ -284,4 +232,4 @@ public class HappyFamilly {
             ++id;
         }
     }
-    }
+}
