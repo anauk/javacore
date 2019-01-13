@@ -166,7 +166,7 @@ public class HappyFamilly {
                             number = s.nextLine();
                             System.out.println("Введите пол ребенка: male-мужской, female-женский");
                             String gender = s.nextLine();
-                            boolean genderMorW = gender.toLowerCase().trim().equals("female")?true:false;
+                            boolean genderMorW = gender.toLowerCase().trim().equals("female");
                             familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number) - 1), createHuman(genderMorW,true));
                             continue outerLoop;
                         case "3":
