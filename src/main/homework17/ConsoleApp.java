@@ -8,11 +8,17 @@ import homework17.family.Human;
 import homework17.family.Man;
 import homework17.family.Woman;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static homework17.family.Human.SDF;
+
 public class ConsoleApp {
+    static{
+        SDF.setLenient(true);
+    }
     public void consoleMethod(){
         Map<String, String> scedule3 = new HashMap<>();
         scedule3.put(DayOfWeek.FRIDAY.name(), "day_4, task_4");
@@ -63,7 +69,6 @@ public class ConsoleApp {
                     System.out.println("Укажите порядковый номер семьи: ");
                     number = s.nextLine();
                     familyController.deleteFamilyByIndex(Integer.parseInt(number) - 1);
-                    System.out.println("Семья под номером "+number+ " удалена.");
                     continue outerLoop;
                 case "8":
                     displayEditFamily();
@@ -101,6 +106,9 @@ public class ConsoleApp {
                 case "9":
                     System.out.println("Укажите возраст ребенка, чтобы удалить его из семьи");
                     number = s.nextLine();
+                    while(!checkInputNumber(number)){
+                        number = s.nextLine();
+                    }
                     familyController.deleteAllChildrenOlderThen(Integer.parseInt(number));
                     continue outerLoop;
                 case "10":
@@ -110,7 +118,18 @@ public class ConsoleApp {
             }
         }
     }
-
+    private static boolean checkInputNumber(String number) {
+        try {
+            int age = Integer.parseInt(number);
+            if(age > 0 && age <20)
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("It is not a number! Try again.");
+            return false;
+        }
+        System.out.println("Try check number from 1 to 19");
+        return false;
+    }
     private static Human createHuman(boolean gender, boolean child) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
@@ -128,8 +147,23 @@ public class ConsoleApp {
         String iq = scanner.nextLine();
 
         String dateOfBerth = day+"/"+month+"/"+year;
+
+        while(!isDayOfBerthday(dateOfBerth)){
+            String year1 = scanner.nextLine();
+            String month2 = scanner.nextLine();
+            String day3 = scanner.nextLine();
+        }
         Human human = gender ? new Woman(name, surname, dateOfBerth, Integer.parseInt(iq)) : new Man(name, surname, dateOfBerth, Integer.parseInt(iq));
         return human;
+    }
+
+    private static boolean isDayOfBerthday(String dateOfBerth) {
+        try {
+            SDF.format((SDF.parse(dateOfBerth).equals(dateOfBerth)));
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
     }
 
     private static void displayChoiceList() {

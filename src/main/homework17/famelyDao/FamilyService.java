@@ -1,11 +1,13 @@
 package homework17.famelyDao;
 
 
+import homework17.FamilyOverflowException;
 import homework17.family.Family;
 import homework17.family.Human;
 import homework17.family.Woman;
 import homework17.pet.Pet;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -14,6 +16,7 @@ import java.util.stream.IntStream;
 
 public class FamilyService {
     private FamilyDao familyDao;
+    private final static int MAX_SIZE_OF_FAMILY = 5;
 
     public FamilyService(FamilyDao familyDao) {
         this.familyDao = familyDao;
@@ -28,36 +31,58 @@ public class FamilyService {
     }
 
     public void displayAllFamilies() {
-        IntStream.range(0, familyDao.getAllFamilies().size())
-                .mapToObj(i -> i + 1 + "-" + familyDao.getFamilyByIndex(i).prettyFormat())
-                .forEach(System.out::println);
+        try {
+            if(familyDao.getAllFamilies().size() == 0) throw new Exception("This DB is empty!");
+            IntStream.range(0, familyDao.getAllFamilies().size())
+                    .mapToObj(i -> i + 1 + "-" + familyDao.getFamilyByIndex(i).prettyFormat())
+                    .forEach(System.out::println);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void getFamiliesBiggerThan(int count) {
         if (familyDao.getAllFamilies().size() == 0) {
             System.out.println("This DB is empty!");
         }
-        familyDao.getAllFamilies().stream()
-                .filter(family -> family.countFamily() > count)
-                .forEach(System.out::println);
+        List<Family> result = new ArrayList<>();
+
+        for (Family family : familyDao.getAllFamilies()) {
+            if (family.countFamily() > count) {
+                result.add(family);
+                System.out.println(result);
+            }
+        }
+        if (result.size() == 0) System.out.println("I didn't find such family!");
     }
 
     public List<Family> getFamiliesBiggerThan1(int count) {
-        List<Family> result = familyDao.getAllFamilies().stream()
+        List<Family> result = new ArrayList<>();
+        familyDao.getAllFamilies().stream()
                 .filter(family -> family.countFamily() > count)
                 .collect(Collectors.toList());
         //.collect(Collectors.toCollection(ArrayList::new)); -2-й способ
+        if (result.size() == 0) {
+            System.out.println("List is empty!");
+            return null;
+        }
         return result;
     }
 
     public List<Family> getFamiliesLessThan(int count) {
         List<Family> result = new ArrayList<>();
-        familyDao.getAllFamilies().stream()
-                .filter(family -> family.countFamily() < count)
-                .forEach(family -> {
-                    System.out.println(family);
-                    result.add(family);
-                });//3-й способ
+        try {
+            familyDao.getAllFamilies().stream()
+                    .filter(family -> family.countFamily() < count)
+                    .forEach(family -> {
+                        System.out.println(family);
+                        result.add(family);
+                    });//3-й способ
+            if (result.size() == 0) throw new Exception("List is empty");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
         return result;
     }
 
@@ -74,22 +99,41 @@ public class FamilyService {
     }
 
     public void deleteFamilyByIndex(int index) {
-        familyDao.deleteFamily(index);
+        try {
+            if (checkIndexOfFamily(index)) throw new IOException("Size is wrong!");
+            familyDao.deleteFamily(index);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public Family bornChild(Family family, String boyName, String girlName) {
-        Human child = family.bornChild();
-        if (child instanceof Woman) {
-            child.setName(girlName);
-        } else {
-            child.setName(boyName);
+        Family result = null;
+        try {
+            if (family.countFamily() == 5) throw new FamilyOverflowException("Error: family is full - ");
+            Human child = family.bornChild();
+            if (child instanceof Woman) {
+                child.setName(girlName);
+            } else {
+                child.setName(boyName);
+            }
+            result = family;
+        } catch (FamilyOverflowException e) {
+            System.out.println(e.getMessage() + MAX_SIZE_OF_FAMILY + " members");
         }
-        return family;
+        return result;
     }
 
     public Family adoptChild(Family family, Human child) {
-        family.addChild(child);
-        return family;
+        Family result = null;
+        try {
+            if (family.countFamily() == 5) throw new FamilyOverflowException("Error: family is full - ");
+            family.addChild(child);
+            result = family;
+        } catch (FamilyOverflowException e) {
+            System.out.println(e.getMessage() + MAX_SIZE_OF_FAMILY + " members");
+        }
+        return result;
     }
 
     public void deleteAllChildrenOlderThen(int age) {
