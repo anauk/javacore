@@ -8,6 +8,7 @@ import homework17.family.Human;
 import homework17.family.Man;
 import homework17.family.Woman;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,10 +17,19 @@ import java.util.Scanner;
 import static homework17.family.Human.SDF;
 
 public class ConsoleApp {
-    static{
+    public static Scanner scanner = new Scanner(System.in);
+    static {
         SDF.setLenient(true);
     }
-    public void consoleMethod(){
+    private static String[] choices1 = {"Заполнить тестовыми данными.", "Отобразить весь список семей",
+            "Отобразить список семей, где количество людей больше заданного", "Отобразить список семей, где количество людей меньше заданного",
+            "Подсчитать количество семей, где количество членов равно", "Создать новую семью",
+            "Удалить семью по индексу семьи в общем списке", "Редактировать семью по индексу семьи в общем списке",
+            "Удалить всех детей старше возраста...", "Exit"};
+    private static String[] choices2 = {"Родить ребенка", "Усыновить ребенка",
+            "Вернуться в главное меню"};
+
+    public void consoleMethod() {
         Map<String, String> scedule3 = new HashMap<>();
         scedule3.put(DayOfWeek.FRIDAY.name(), "day_4, task_4");
         Human mother1 = new Woman("Vera", "Petrova", "01/02/1984", 79, scedule3);
@@ -35,7 +45,7 @@ public class ConsoleApp {
         outerLoop:
         while (true) {
             Scanner s = new Scanner(System.in);
-            displayChoiceList();
+            displayChoiceList(choices1);
             String number;
             String choice = s.nextLine();
             switch (choice) {
@@ -48,53 +58,42 @@ public class ConsoleApp {
                     familyController.displayAllFamilies();
                     continue outerLoop;
                 case "3":
-                    System.out.println("Укажите количество людей в семье:");
-                    number = s.nextLine();
+                    number = askPrintAnsver("Укажите количество людей в семье:");
                     familyController.getFamiliesBiggerThan(Integer.parseInt(number));
                     continue outerLoop;
                 case "4":
-                    System.out.println("Укажите количество людей в семье:");
-                    number = s.nextLine();
+                    number = askPrintAnsver("Укажите количество людей в семье:");
                     familyController.getFamiliesLessThan(Integer.parseInt(number));
                     continue outerLoop;
                 case "5":
-                    System.out.println("Укажите количество людей в семье:");
-                    number = s.nextLine();
-                    System.out.println("Количество семей, где количество людей "+number+" = "+familyController.countFamiliesWithMemberNumber(Integer.parseInt(number)));
+                    number = askPrintAnsver("Укажите количество людей в семье:");
+                    System.out.println("Количество семей, где количество людей " + number + " = " + familyController.countFamiliesWithMemberNumber(Integer.parseInt(number)));
                     continue outerLoop;
                 case "6":
                     familyController.createNewFamily(createHuman(true, false), createHuman(false, false));
                     continue outerLoop;
                 case "7":
-                    System.out.println("Укажите порядковый номер семьи: ");
-                    number = s.nextLine();
+                    number = askPrintAnsver("Укажите порядковый номер семьи: ");
                     familyController.deleteFamilyByIndex(Integer.parseInt(number) - 1);
                     continue outerLoop;
                 case "8":
-                    displayEditFamily();
+                    displayChoiceList(choices2);
                     String chooze = s.nextLine();
                     switch (chooze) {
                         case "1":
-                            System.out.println("порядковый номер семьи?");
-                            number = s.nextLine();
-
-                            System.out.println("какое имя дать мальчику?");
-                            String boyName = s.nextLine();
-
-                            System.out.println("какое имя дать девочке?");
-                            String girlName = s.nextLine();
+                            number = askPrintAnsver("порядковый номер семьи?");
+                            String boyName = askPrintAnsver("какое имя дать мальчику?");
+                            String girlName = askPrintAnsver("какое имя дать девочке?");
 
                             familyController.bornChild(familyController.getFamilyById(Integer.parseInt(number) - 1), boyName, girlName);
                             System.out.println("Поздравляем, у вас родился ребенок!");
-                            System.out.println(familyController.getFamilyById(Integer.parseInt(number)-1));
+                            System.out.println(familyController.getFamilyById(Integer.parseInt(number) - 1));
                             continue outerLoop;
                         case "2":
-                            System.out.println("порядковый номер семьи?");
-                            number = s.nextLine();
-                            System.out.println("Введите пол ребенка: male-мужской, female-женский");
-                            String gender = s.nextLine();
+                            number = askPrintAnsver("порядковый номер семьи?");
+                            String gender = askPrintAnsver("Введите пол ребенка: male-мужской, female-женский");
                             boolean genderMorW = gender.toLowerCase().trim().equals("female");
-                            familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number) - 1), createHuman(genderMorW,true));
+                            familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number) - 1), createHuman(genderMorW, true));
                             continue outerLoop;
                         case "3":
                             continue outerLoop;
@@ -104,9 +103,8 @@ public class ConsoleApp {
 
                     }
                 case "9":
-                    System.out.println("Укажите возраст ребенка, чтобы удалить его из семьи");
-                    number = s.nextLine();
-                    while(!checkInputNumber(number)){
+                    number = askPrintAnsver("Укажите возраст ребенка, чтобы удалить его из семьи");
+                    while (!checkInputNumber(number)) {
                         number = s.nextLine();
                     }
                     familyController.deleteAllChildrenOlderThen(Integer.parseInt(number));
@@ -118,11 +116,12 @@ public class ConsoleApp {
             }
         }
     }
+
     private static boolean checkInputNumber(String number) {
         try {
             int age = Integer.parseInt(number);
-            if(age > 0 && age <20)
-            return true;
+            if (age > 0 && age < 20)
+                return true;
         } catch (NumberFormatException e) {
             System.out.println("It is not a number! Try again.");
             return false;
@@ -130,29 +129,40 @@ public class ConsoleApp {
         System.out.println("Try check number from 1 to 19");
         return false;
     }
+   
     private static Human createHuman(boolean gender, boolean child) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
-        System.out.println(!child ? gender ? "Введите фамилию матери!" : "Введите фамилию отца!" : "Ввведите фамилию ребенка");
-        System.out.println(!child ? gender ? "Введите год рождения матери!(гггг)" : "Введите год рождения  отца!(гггг)" : "Ввведите год рождения  ребенка (гггг)");
-        System.out.println(!child ? gender ? "Введите месяц рождения матери!(мм)" : "Введите месяц рождения отца!(мм)" : "Ввведите месяц рождения  ребенка (мм)");
-        System.out.println(!child ? gender ? "Введите день рождения матери!(дд)" : "Введите день рождения отца!(дд)" : "Ввведите день рождения  ребенка (дд)");
-        System.out.println(!child ? gender ? "Введите iq матери!" : "Введите iq отца!" : "Ввведите iq ребенка ");
+        String name = askPrintAnsver(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
+        String surname = askPrintAnsver(!child ? gender ? "Введите фамилию матери!" : "Введите фамилию отца!" : "Ввведите фамилию ребенка");
+        String day = askPrintAnsver(!child ? gender ? "Введите день рождения матери!(дд)" : "Введите день рождения отца!(дд)" : "Ввведите день рождения  ребенка (дд)");
 
-        String name = scanner.nextLine();
-        String surname = scanner.nextLine();
-        String year = scanner.nextLine();
-        String month = scanner.nextLine();
-        String day = scanner.nextLine();
-        String iq = scanner.nextLine();
-
-        String dateOfBerth = day+"/"+month+"/"+year;
-
-        while(!isDayOfBerthday(dateOfBerth)){
-            String year1 = scanner.nextLine();
-            String month2 = scanner.nextLine();
-            String day3 = scanner.nextLine();
+        try {
+            if (Integer.parseInt(day) < 1 || Integer.parseInt(day) > 31)
+                throw new Exception("Введите день от 1 до 31!");
+        }catch(Exception e){
+            e.getMessage();
         }
+
+        String month = askPrintAnsver(!child ? gender ? "Введите месяц рождения матери!(мм)" : "Введите месяц рождения отца!(мм)" : "Ввведите месяц рождения  ребенка (мм)");
+
+        try {
+            if (Integer.parseInt(month) <1 || Integer.parseInt(month) > 12)
+                throw new Exception("Введите день от 1 до 12!");
+        }catch(Exception e){
+            e.getMessage();
+        }
+        String year = askPrintAnsver(!child ? gender ? "Введите год рождения матери!(гггг)" : "Введите год рождения  отца!(гггг)" : "Ввведите год рождения  ребенка (гггг)");
+
+        try {
+            if (Integer.parseInt(year) < 1943) throw new Exception("Введите год рожденияб от 1943!");
+        } catch(Exception e){
+        e.getMessage();
+        }
+        String iq = askPrintAnsver(!child ? gender ? "Введите iq матери!" : "Введите iq отца!" : "Ввведите iq ребенка ");
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(day).append("/").append(month).append("/").append(year);
+        String dateOfBerth = sb.toString();
+
         Human human = gender ? new Woman(name, surname, dateOfBerth, Integer.parseInt(iq)) : new Man(name, surname, dateOfBerth, Integer.parseInt(iq));
         return human;
     }
@@ -166,26 +176,15 @@ public class ConsoleApp {
         }
     }
 
-    private static void displayChoiceList() {
-        String[] choices = new String[]{"Заполнить тестовыми данными.", "Отобразить весь список семей",
-                "Отобразить список семей, где количество людей больше заданного", "Отобразить список семей, где количество людей меньше заданного",
-                "Подсчитать количество семей, где количество членов равно", "Создать новую семью",
-                "Удалить семью по индексу семьи в общем списке", "Редактировать семью по индексу семьи в общем списке",
-                "Удалить всех детей старше возраста...", "Exit"};
+    private static void displayChoiceList(String[] choices) {
         int id = 0;
         for (String choice : choices) {
             System.out.println((id + 1) + ". " + choice);
             ++id;
         }
     }
-
-    private static void displayEditFamily() {
-        String[] choices = new String[]{"Родить ребенка", "Усыновить ребенка",
-                "Вернуться в главное меню"};
-        int id = 0;
-        for (String choice : choices) {
-            System.out.println((id + 1) + ". " + choice);
-            ++id;
-        }
+    private static String askPrintAnsver(String s){
+        System.out.println(s);
+        return scanner.nextLine();
     }
 }
