@@ -1,7 +1,7 @@
 package homework17.famelyDao;
 
 
-import homework17.FamilyOverflowException;
+import homework17.exception.FamilyOverflowException;
 import homework17.family.Family;
 import homework17.family.Human;
 import homework17.family.Woman;

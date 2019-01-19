@@ -2,6 +2,7 @@ package homework17.family;
 
 import homework17.pet.Pet;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Family implements HumanCreator {
@@ -32,7 +33,7 @@ public class Family implements HumanCreator {
     }
 
     public boolean deletChild(int index) {
-        if(children != null &&children.size()>0) {
+        if (children != null && children.size() > 0) {
             if (index >= 0 && index < children.size()) {
                 children.remove(index).setFamily(null);
                 return true;
@@ -62,13 +63,14 @@ public class Family implements HumanCreator {
                 "father = " + this.father + ", \n" +
                 "children = " + children;
     }
-    public String prettyFormat(){
+
+    public String prettyFormat() {
         String[] childrenArray = new String[children.size()];
         for (int i = 0; i < children.size(); i++) {
-            if(children.get(i) instanceof Man) {
-                childrenArray[i] = "boy: " + children.get(i).toString()+ "\n";
+            if (children.get(i) instanceof Man) {
+                childrenArray[i] = "boy: " + children.get(i).toString() + "\n";
             } else {
-                childrenArray[i] = "girl: " + children.get(i).toString()+ "\n";
+                childrenArray[i] = "girl: " + children.get(i).toString() + "\n";
             }
         }
         String[] petsArray = new String[pet.size()];
@@ -77,10 +79,10 @@ public class Family implements HumanCreator {
         }
 
         return "family: \n" +
-            "mother: " + mother.toString() + "\n" +
+                "mother: " + mother.toString() + "\n" +
                 "father:  " + father.toString() + "\n " +
-                "children: " + Arrays.toString(childrenArray)+"\n"
-                +"pets: " + Arrays.toString(petsArray);
+                "children: " + Arrays.toString(childrenArray) + "\n"
+                + "pets: " + Arrays.toString(petsArray);
     }
 
     @Override
@@ -119,18 +121,19 @@ public class Family implements HumanCreator {
     @Override
     public Human bornChild() {
         Human child;
+        String year = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        int iq = (mother.getIQ() + father.getIQ()) / 2;
         if ((int) (Math.random() * 2) == 0) {
             String[] boyName = {"Roma", "Peta", "Kola", "Vasa", "Kiril"};
             int boyNameR = (int) (Math.random() * boyName.length);
-            child = new Man(boyName[boyNameR], father.getSurname());
+            child = new Man(boyName[boyNameR], father.getSurname(), year, iq);
         } else {
             String[] girlName = {"Lida", "Veta", "Olga", "Vlada", "Hasta"};
             int girlNameR = (int) (Math.random() * girlName.length);
-            child = new Woman(girlName[girlNameR], father.getSurname());
+            child = new Woman(girlName[girlNameR], father.getSurname(), year, iq);
         }
         child.setFamily(this);
         this.addChild(child);
-        child.setIQ((mother.getIQ() + father.getIQ()) / 2);
         return child;
     }
 }

@@ -1,4 +1,4 @@
-package homework17;
+package homework17.exception;
 
 public class FamilyOverflowException extends RuntimeException{
     public FamilyOverflowException(String message) {
