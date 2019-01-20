@@ -110,7 +110,8 @@ public class FamilyService {
     public Family bornChild(Family family, String boyName, String girlName) {
         Family result = null;
         try {
-            if (family.countFamily() == 5) throw new FamilyOverflowException("Error: family is full - ");
+            if(family == null) throw new NullPointerException("List is empty");
+            if (family.countFamily() == 5) throw new FamilyOverflowException("Error: family is full - "+ MAX_SIZE_OF_FAMILY + " members");
             Human child = family.bornChild();
             if (child instanceof Woman) {
                 child.setName(girlName);
@@ -118,8 +119,8 @@ public class FamilyService {
                 child.setName(boyName);
             }
             result = family;
-        } catch (FamilyOverflowException e) {
-            System.out.println(e.getMessage() + MAX_SIZE_OF_FAMILY + " members");
+        } catch (FamilyOverflowException|NullPointerException e) {
+            System.out.println(e.getMessage());
         }
         return result;
     }

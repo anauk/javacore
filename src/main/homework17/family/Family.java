@@ -130,7 +130,7 @@ public class Family implements HumanCreator {
         } else {
             String[] girlName = {"Lida", "Veta", "Olga", "Vlada", "Hasta"};
             int girlNameR = (int) (Math.random() * girlName.length);
-            child = new Woman(girlName[girlNameR], father.getSurname(), year, iq);
+            child = new Woman(girlName[girlNameR], father.getSurname(),year, iq);
         }
         child.setFamily(this);
         this.addChild(child);

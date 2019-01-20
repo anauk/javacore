@@ -4,8 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CheckingMethods {
-    private static Scanner scanner = new Scanner(System.in);
-    public static String checkInputString(String question) {
+    private  Scanner scanner = new Scanner(System.in);
+    public  String checkInputString(String question) {
         System.out.println(question);
         String name;
         int sizeName;
@@ -26,17 +26,37 @@ public class CheckingMethods {
         return name;
     }
 
-    public static String checkEnterIndex(String question) {
+    public boolean isGenderMenOrWomen(String s) {
+        System.out.println(s);
+        String gender;
+        boolean genderMorW;
+        while(true){
+            gender = scanner.nextLine();
+            if(gender.toLowerCase().trim().equals("female")) {
+                genderMorW = true;
+            } else if(gender.toLowerCase().trim().equals("male")) {
+                genderMorW = true;
+            } else {
+                System.out.println("Enter male or female");
+                continue;
+            }
+            break;
+        }
+        return genderMorW;
+    }
+
+    public int getCorrectNumber(String question) {
         System.out.println(question);
-        String number;
-        int index;
+        int number;
         while (true) {
-            number = scanner.nextLine();
             try {
-                index = Integer.parseInt(number);
-                if (index < 0 || index > ConsoleApp.familyController.getAllFamilies().size()) throw new Exception();
-            } catch (Exception e) {
-                System.out.println("I did not find family with such index!");
+                number = scanner.nextInt();
+                if (number < 0 || number > ConsoleApp.familyController.getAllFamilies().size()) throw new GoingBeyond("I did not find family with such index!");
+                if( number == 0 ) break;
+            } catch (InputMismatchException|GoingBeyond e) {
+                System.out.println("Write a number!");
+                System.out.println(e.getMessage());
+                scanner.nextLine();
                 continue;
             }
             break;
@@ -44,7 +64,7 @@ public class CheckingMethods {
         return number;
     }
 
-    public static String checkInputNumber(String question) {
+    public String checkInputNumber(String question) {
         System.out.println(question);
         String number;
         int age;
@@ -63,12 +83,7 @@ public class CheckingMethods {
         return number;
     }
 
-    public static String askPrintAnsver(String s) {
-        System.out.println(s);
-        return scanner.nextLine();
-    }
-
-    public static String checkIq() {
+    public String checkIq() {
         String iq;
         int iqCheck;
         while (true) {
@@ -86,7 +101,7 @@ public class CheckingMethods {
         return iq;
     }
 
-    public static String checkDay() {
+    public String checkDay() {
         String day;
         int dayCheck;
         while (true) {
@@ -104,7 +119,7 @@ public class CheckingMethods {
         return day;
     }
 
-    public static String checkMonth() {
+    public String checkMonth() {
         String month;
         int monthCheck;
         while (true) {
@@ -122,7 +137,7 @@ public class CheckingMethods {
         return month;
     }
 
-    public static String checkYear() {
+    public String checkYear() {
         String year;
         int yearCheck;
         while (true) {
@@ -141,7 +156,7 @@ public class CheckingMethods {
         return year;
     }
 
-    public static void displayChoiceList(String[] choices) {
+    public void displayChoiceList(String[] choices) {
         int id = 0;
         for (String choice : choices) {
             System.out.println((id + 1) + ". " + choice);
@@ -149,7 +164,7 @@ public class CheckingMethods {
         }
     }
 
-    public static String checkPrintAnsver() {
+    public String checkPrintAnsver() {
         System.out.println("Укажите количество людей в семье:");
         String number;
         int quantity;

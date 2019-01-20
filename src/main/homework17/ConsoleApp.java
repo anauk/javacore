@@ -1,6 +1,5 @@
 package homework17;
 import homework17.exception.CheckingMethods;
-import homework17.exception.GoingBeyond;
 import homework17.famelyDao.CollectionFamilyDao;
 import homework17.famelyDao.FamilyController;
 import homework17.famelyDao.FamilyDao;
@@ -9,11 +8,11 @@ import homework17.family.Human;
 import homework17.family.Man;
 import homework17.family.Woman;
 import java.util.*;
-import static homework17.exception.CheckingMethods.*;
 
 
 public class ConsoleApp {
-    public Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    CheckingMethods cm = new CheckingMethods();
 
     private String[] choices1 = {"Заполнить тестовыми данными.", "Отобразить весь список семей",
             "Отобразить список семей, где количество людей больше заданного", "Отобразить список семей, где количество людей меньше заданного",
@@ -38,8 +37,9 @@ public class ConsoleApp {
 
         outerLoop:
         while (true) {
-            CheckingMethods.displayChoiceList(choices1);
+            cm.displayChoiceList(choices1);
             String number;
+            int numberOfInput;
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -51,42 +51,41 @@ public class ConsoleApp {
                     familyController.displayAllFamilies();
                     continue outerLoop;
                 case "3":
-                    number = CheckingMethods.checkPrintAnsver();
+                    number = cm.checkPrintAnsver();
                     familyController.getFamiliesBiggerThan(Integer.parseInt(number));
                     continue outerLoop;
                 case "4":
-                    number = CheckingMethods.checkPrintAnsver();
+                    number = cm.checkPrintAnsver();
                     familyController.getFamiliesLessThan(Integer.parseInt(number));
                     continue outerLoop;
                 case "5":
-                    number = CheckingMethods.checkPrintAnsver();
+                    number = cm.checkPrintAnsver();
                     System.out.println("Количество семей, где количество людей " + number + " = " + familyController.countFamiliesWithMemberNumber(Integer.parseInt(number)));
                     continue outerLoop;
                 case "6":
                     familyController.createNewFamily(createHuman(true, false), createHuman(false, false));
                     continue outerLoop;
                 case "7":
-                    number = CheckingMethods.checkEnterIndex("Укажите порядковый номер семьи: ");
-                    familyController.deleteFamilyByIndex(Integer.parseInt(number) - 1);
+                    numberOfInput = cm.getCorrectNumber("Укажите порядковый номер семьи: ");
+                    familyController.deleteFamilyByIndex(numberOfInput);
                     continue outerLoop;
                 case "8":
-                    CheckingMethods.displayChoiceList(choices2);
+                    cm.displayChoiceList(choices2);
                     String chooze = scanner.nextLine();
                     switch (chooze) {
                         case "1":
-                            number = CheckingMethods.checkEnterIndex("Укажите порядковый номер семьи: ");
-                            String boyName = CheckingMethods.checkInputString("какое имя дать мальчику?");
-                            String girlName = CheckingMethods.checkInputString("какое имя дать девочке?");
+                            numberOfInput = cm.getCorrectNumber("Укажите порядковый номер семьи: ");
+                            String boyName = cm.checkInputString("какое имя дать мальчику?");
+                            String girlName = cm.checkInputString("какое имя дать девочке?");
 
-                            familyController.bornChild(familyController.getFamilyById(Integer.parseInt(number) - 1), boyName, girlName);
+                            familyController.bornChild(familyController.getFamilyById(numberOfInput-1), boyName, girlName);
                             System.out.println("Поздравляем, у вас родился ребенок!");
-                            System.out.println(familyController.getFamilyById(Integer.parseInt(number) - 1));
+                            System.out.println(familyController.getFamilyById(numberOfInput-1));
                             continue outerLoop;
                         case "2":
-                            number = checkEnterIndex("Укажите порядковый номер семьи: ");
-                            String gender = checkInputString("Введите пол ребенка: male-мужской, female-женский");
-                            boolean genderMorW = gender.toLowerCase().trim().equals("female");
-                            familyController.adoptChild(familyController.getFamilyById(Integer.parseInt(number) - 1), createHuman(genderMorW, true));
+                            numberOfInput = cm.getCorrectNumber("Укажите порядковый номер семьи: ");
+                            boolean genderMorW = cm.isGenderMenOrWomen("Введите пол ребенка: male-мужской, female-женский");
+                            familyController.adoptChild(familyController.getFamilyById(numberOfInput-1), createHuman(genderMorW, true));
                             continue outerLoop;
                         case "3":
                             continue outerLoop;
@@ -96,7 +95,7 @@ public class ConsoleApp {
 
                     }
                 case "9":
-                    number = CheckingMethods.checkInputNumber("Укажите возраст ребенка, чтобы удалить его из семьи");
+                    number = cm.checkInputNumber("Укажите возраст ребенка, чтобы удалить его из семьи");
                     familyController.deleteAllChildrenOlderThen(Integer.parseInt(number));
                     continue outerLoop;
                 case "10":
@@ -108,17 +107,17 @@ public class ConsoleApp {
     }
 
     private Human createHuman(boolean gender, boolean child) {
-        String name = checkInputString(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
-        String surname = checkInputString(!child ? gender ? "Введите фамилию матери!" : "Введите фамилию отца!" : "Ввведите фамилию ребенка");
+        String name = cm.checkInputString(!child ? gender ? "Введите имя матери!" : "Введите имя отца!" : "Ввведите имя ребенка");
+        String surname = cm.checkInputString(!child ? gender ? "Введите фамилию матери!" : "Введите фамилию отца!" : "Ввведите фамилию ребенка");
 
         System.out.println(!child ? gender ? "Введите день рождения матери!(дд)" : "Введите день рождения отца!(дд)" : "Ввведите день рождения  ребенка (дд)");
-        String day = checkDay();
+        String day = cm.checkDay();
         System.out.println(!child ? gender ? "Введите месяц рождения матери!(мм)" : "Введите месяц рождения отца!(мм)" : "Ввведите месяц рождения  ребенка (мм)");
-        String month = checkMonth();
+        String month = cm.checkMonth();
         System.out.println(!child ? gender ? "Введите год рождения матери!(гггг)" : "Введите год рождения  отца!(гггг)" : "Ввведите год рождения  ребенка (гггг)");
-        String year = checkYear();
+        String year = cm.checkYear();
         System.out.println(!child ? gender ? "Введите iq матери!" : "Введите iq отца!" : "Ввведите iq ребенка ");
-        String iq = checkIq();
+        String iq = cm.checkIq();
         StringBuilder sb = new StringBuilder();
         sb.append(day).append("/").append(month).append("/").append(year);
         String dateOfBerth = sb.toString();
