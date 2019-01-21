@@ -1,0 +1,15 @@
+package main.homework8;
+
+public enum DayOfWeek {
+    MONDAY("ПОНЕДЕЛЬНИК"), TUESDAY("ВТОРНИК"), WEDNESDAY("СРЕДА"),
+    THURSDAY("ЧЕТВЕРГ"), FRIDAY("ПЯТНИЦА"), SATURDAY("СУББОТА"), SANDAY("ВОСКРЕСЕНЬЕ");
+    private String day;
+
+    private DayOfWeek(String day) {
+        this.day = day;
+    }
+
+    private String getDay() {
+        return day;
+    }
+}

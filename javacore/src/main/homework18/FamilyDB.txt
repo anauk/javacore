@@ -1,0 +1,7 @@
+[mother = Woman{name= Vera, surname= Petrova, yearOfBirth= 01/02/1984, iq= 79, scedule= {FRIDAY=day_4, task_4}}, 
+father = Man{name= Andrey, surname= Petrov, yearOfBirth= 01/02/1981, iq= 89, scedule= {FRIDAY=day_4, task_4}}, 
+children = [], mother = Woman{name= Ola, surname= Simpson, yearOfBirth= 01/02/1979, iq= 69, scedule= {FRIDAY=day_4, task_4}}, 
+father = Man{name= Arseniy, surname= Simpson, yearOfBirth= 01/02/1975, iq= 71, scedule= {FRIDAY=day_4, task_4}}, 
+children = [], mother = Woman{name= Rita, surname= Sicolova, yearOfBirth= 01/02/1960, iq= 77, scedule= {FRIDAY=day_4, task_4}}, 
+father = Man{name= Roma, surname= Socolov, yearOfBirth= 01/02/1955, iq= 73, scedule= {FRIDAY=day_4, task_4}}, 
+children = []]
